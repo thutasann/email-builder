@@ -8,3 +8,9 @@ This is a Next.js project that allows you to build AI-powered email templates.
 - Tailwind CSS
 - Shadcn UI
 - Convex
+
+## Convex
+
+```bash
+npx convex dev
+```
