@@ -2,12 +2,16 @@
 
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
+import { useMutation } from 'convex/react'
+import { api } from '../../../convex/_generated/api'
 import { Button } from '../ui/button'
 
 /**
  * Sign in button to sign in with Google
  */
 function SignInButton() {
+  const createUser = useMutation(api.users.createUser)
+
   /** Google Login */
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -15,8 +19,17 @@ function SignInButton() {
       const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
         headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
       })
+      const user = userInfo?.data
 
-      console.log('userInfo ==> ', userInfo)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('userDetails', JSON.stringify(user))
+      }
+
+      await createUser({
+        name: user?.name,
+        email: user?.email,
+        picture: user?.picture,
+      })
     },
     onError: (errorResponse) => console.log('errorResponse ==> ', errorResponse),
   })
