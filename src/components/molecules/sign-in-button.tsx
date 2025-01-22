@@ -21,15 +21,17 @@ function SignInButton() {
       })
       const user = userInfo?.data
 
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('userDetails', JSON.stringify(user))
-      }
-
-      await createUser({
+      const result = await createUser({
         name: user?.name,
         email: user?.email,
         picture: user?.picture,
       })
+
+      const userDetails = { ...user, _id: (result as any)?._id ?? result }
+
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('userDetails', JSON.stringify(userDetails))
+      }
     },
     onError: (errorResponse) => console.log('errorResponse ==> ', errorResponse),
   })

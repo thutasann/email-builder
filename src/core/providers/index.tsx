@@ -1,5 +1,6 @@
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { ReactNode } from 'react'
+import { UserDetailsProvider } from '../contexts/user-details-context'
 import { ConvexClientProvider } from './convex-client-provider'
 
 /**
@@ -9,7 +10,9 @@ import { ConvexClientProvider } from './convex-client-provider'
 function Providers({ children }: { children: ReactNode }) {
   return (
     <ConvexClientProvider>
-      <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>{children}</GoogleOAuthProvider>
+      <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>
+        <UserDetailsProvider>{children}</UserDetailsProvider>
+      </GoogleOAuthProvider>
     </ConvexClientProvider>
   )
 }
