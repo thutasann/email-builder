@@ -1,3 +1,4 @@
+import { Element } from '@/core/types/element.type'
 import {
   Frame,
   Image,
@@ -11,7 +12,7 @@ import {
 /**
  * Elements
  */
-export const elements = [
+export const elements: Element[] = [
   {
     icon: RectangleEllipsis,
     label: 'Button',
@@ -90,6 +91,7 @@ export const elements = [
       padding: '10px',
       height: '30%',
       width: '30%',
+      borderRadius: '0px',
     },
     outerStyle: {
       display: 'flex',
@@ -111,6 +113,7 @@ export const elements = [
       padding: '10px',
       height: '40%',
       width: '40%',
+      borderRadius: '0px',
     },
     outerStyle: {
       display: 'flex',
@@ -173,5 +176,3 @@ export const elements = [
     },
   },
 ]
-
-export type Element = (typeof elements)[number]

@@ -15,7 +15,7 @@ const UserDetailsContext = createContext<UserDetailsContextType>({
 })
 
 /**
- * User details provider
+ * ## User details provider
  */
 export const UserDetailsProvider = ({ children }: { children: ReactNode }) => {
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null)

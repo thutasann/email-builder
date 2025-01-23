@@ -1,9 +1,10 @@
+import { Layout } from '@/core/types/layout.type'
 import { Columns2, Columns3, Columns4, RectangleHorizontal } from 'lucide-react'
 
 /**
  * Layouts
  */
-export const layouts = [
+export const layouts: Layout[] = [
   {
     label: 'Column',
     type: 'column',
@@ -29,5 +30,3 @@ export const layouts = [
     icon: Columns4,
   },
 ]
-
-export type Layout = (typeof layouts)[number]

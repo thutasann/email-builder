@@ -1,27 +1,22 @@
 'use client'
 
-import { Layout } from '@/core/libraries/configs/layouts'
+import { DragLayoutProps } from '@/core/types/email-template.type'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 type DragLayout = {
   /**
    * Drag Layout
    */
-  dragLayout: Layout & {
-    /**
-     * Unique Id
-     */
-    id: number
-  }
+  dragLayout: DragLayoutProps
 }
 
 type DNDLayoutContextType = {
   /**
-   * Layout
+   * Drag and Drop Layout
    */
   layout: DragLayout | null
   /**
-   * Set Layout
+   * Set Drag and Drop Layout
    */
   setLayout: (layout: DragLayout) => void
 }
@@ -32,7 +27,7 @@ const DNDLayoutContext = createContext<DNDLayoutContextType>({
 })
 
 /**
- * DND Layout Provider
+ * ## DND Layout Provider
  */
 export const DNDLayoutProvider = ({ children }: { children: ReactNode }) => {
   const [layout, setLayout] = useState<DragLayout | null>(null)
@@ -42,6 +37,7 @@ export const DNDLayoutProvider = ({ children }: { children: ReactNode }) => {
 
 /**
  * Use DND Layout
+ * @description use this hook to get the layout
  */
 export const useDNDLayout = () => {
   const context = useContext(DNDLayoutContext)

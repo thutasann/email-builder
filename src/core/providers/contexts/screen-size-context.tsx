@@ -13,7 +13,7 @@ const ScreenSizeContext = createContext<ScreenSizeContextType>({
 })
 
 /**
- * Screen size provider
+ * ## Screen size provider
  */
 export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
   const [screenSize, setScreenSize] = useState<'mobile' | 'desktop'>('desktop')

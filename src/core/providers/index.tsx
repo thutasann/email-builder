@@ -1,6 +1,7 @@
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { ReactNode } from 'react'
 import { DNDLayoutProvider } from './contexts/dnd-layout-context'
+import { EmailTemplateProvider } from './contexts/email-template-context'
 import { ScreenSizeProvider } from './contexts/screen-size-context'
 import { UserDetailsProvider } from './contexts/user-details-context'
 import { ConvexClientProvider } from './convex-client-provider'
@@ -15,7 +16,9 @@ function Providers({ children }: { children: ReactNode }) {
       <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>
         <UserDetailsProvider>
           <ScreenSizeProvider>
-            <DNDLayoutProvider>{children}</DNDLayoutProvider>
+            <DNDLayoutProvider>
+              <EmailTemplateProvider>{children}</EmailTemplateProvider>
+            </DNDLayoutProvider>
           </ScreenSizeProvider>
         </UserDetailsProvider>
       </GoogleOAuthProvider>
