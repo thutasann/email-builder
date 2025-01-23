@@ -1,5 +1,5 @@
-import Header from '@/components/organisms/Landing/Header'
-import Hero from '@/components/organisms/Landing/Hero'
+import Header from '@/components/organisms/Landing/header'
+import Hero from '@/components/organisms/Landing/hero'
 
 export default function Home() {
   return (
