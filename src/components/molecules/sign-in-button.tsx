@@ -1,6 +1,6 @@
 'use client'
 
-import { useUserDetails } from '@/core/contexts/user-details-context'
+import { useUserDetails } from '@/core/providers/contexts/user-details-context'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import { useMutation } from 'convex/react'
@@ -20,7 +20,6 @@ function SignInButton() {
   /** Google Login */
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log('tokenResponse ==> ', tokenResponse)
       const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
         headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
       })
@@ -38,7 +37,7 @@ function SignInButton() {
         localStorage.setItem('userDetails', JSON.stringify(userDetails))
       }
     },
-    onError: (errorResponse) => console.log('errorResponse ==> ', errorResponse),
+    onError: (errorResponse) => console.error('errorResponse ==> ', errorResponse),
   })
 
   const handleSignIn = useCallback(() => {

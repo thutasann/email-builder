@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useScreenSize } from '@/core/contexts/screen-size-context'
+import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { Code, Monitor, Smartphone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,15 +9,20 @@ import { useCallback } from 'react'
 
 function EditorHeader() {
   const { screenSize, setScreenSize } = useScreenSize()
-  console.log('screenSize', screenSize)
 
-  const handleSaveTemplate = () => {}
+  /** handle save template */
+  const handleSaveTemplate = useCallback(() => {}, [])
 
-  const handleSendTestEmail = () => {}
+  /** handle send test email */
+  const handleSendTestEmail = useCallback(() => {}, [])
 
-  const handleToggleScreenSize = useCallback(() => {
-    setScreenSize(screenSize === 'desktop' ? 'mobile' : 'desktop')
-  }, [screenSize, setScreenSize])
+  /** handle toggle screen size */
+  const handleToggleScreenSize = useCallback(
+    (size: 'mobile' | 'desktop') => {
+      setScreenSize(size)
+    },
+    [setScreenSize],
+  )
 
   return (
     <header className='flex items-center justify-between px-4 py-3 shadow-sm sticky top-0 z-50 bg-white'>
@@ -30,7 +35,7 @@ function EditorHeader() {
           variant='ghost'
           size='icon'
           className={screenSize === 'desktop' ? 'bg-accent' : ''}
-          onClick={handleToggleScreenSize}
+          onClick={() => handleToggleScreenSize('desktop')}
         >
           <Monitor />
         </Button>
@@ -38,7 +43,7 @@ function EditorHeader() {
           variant='ghost'
           size='icon'
           className={screenSize === 'mobile' ? 'bg-accent' : ''}
-          onClick={handleToggleScreenSize}
+          onClick={() => handleToggleScreenSize('mobile')}
         >
           <Smartphone />
         </Button>

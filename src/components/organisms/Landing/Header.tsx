@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { useUserDetails } from '@/core/contexts/user-details-context'
+import { useUserDetails } from '@/core/providers/contexts/user-details-context'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'

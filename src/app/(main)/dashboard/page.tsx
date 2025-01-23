@@ -1,5 +1,5 @@
+import DashboardWelcome from '@/components/organisms/dashboard/welcome'
 import EmailTemplateList from '@/components/organisms/dashboard/welcome/email-template-list'
-import DashboardWelcome from '@/components/organisms/dashboard/welcome/welcome'
 import Header from '@/components/organisms/Landing/header'
 import { Fragment } from 'react'
 

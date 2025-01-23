@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
-import { UserDetails } from '../types/users.type'
+import { UserDetails } from '../../types/users.type'
 
 type UserDetailsContextType = {
   userDetails: UserDetails | null

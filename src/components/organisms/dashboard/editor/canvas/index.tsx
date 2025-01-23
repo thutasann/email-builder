@@ -1,6 +1,6 @@
 'use client'
 
-import { useScreenSize } from '@/core/contexts/screen-size-context'
+import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { cn } from '@/lib/utils'
 
 function Canvas() {
