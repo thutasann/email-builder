@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: 'AI Powered Email Builder',
   description: 'AI Powered Email Builder',
   icons: {
-    icon: '/logo.png',
+    icon: '/hero.png',
   },
 }
 

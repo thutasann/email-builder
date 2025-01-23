@@ -1,8 +1,11 @@
 'use client'
 
+import { useUserDetails } from '@/core/contexts/user-details-context'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 import { useMutation } from 'convex/react'
+import { useRouter } from 'next/navigation'
+import { useCallback } from 'react'
 import { api } from '../../../convex/_generated/api'
 import { Button } from '../ui/button'
 
@@ -11,6 +14,8 @@ import { Button } from '../ui/button'
  */
 function SignInButton() {
   const createUser = useMutation(api.users.createUser)
+  const { userDetails } = useUserDetails()
+  const { push } = useRouter()
 
   /** Google Login */
   const googleLogin = useGoogleLogin({
@@ -36,14 +41,15 @@ function SignInButton() {
     onError: (errorResponse) => console.log('errorResponse ==> ', errorResponse),
   })
 
-  return (
-    <Button
-      className='bg-white text-purple-600 font-bold py-2 px-8 rounded-full text-md hover:bg-purple-100 transition duration-300'
-      onClick={() => googleLogin()}
-    >
-      Get Started
-    </Button>
-  )
+  const handleSignIn = useCallback(() => {
+    if (userDetails) {
+      push('/dashboard')
+    } else {
+      googleLogin()
+    }
+  }, [userDetails, push, googleLogin])
+
+  return <Button onClick={handleSignIn}>{userDetails ? 'Go to Dashboard' : 'Get Started'}</Button>
 }
 
 export default SignInButton
