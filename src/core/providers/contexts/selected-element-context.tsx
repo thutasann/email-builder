@@ -4,7 +4,13 @@ import { DragLayoutProps } from '@/core/types/email-template.type'
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
 
 type SelectedElement = {
+  /**
+   * Selected ElementLayout
+   */
   layout: DragLayoutProps
+  /**
+   * Index
+   */
   index: number
 }
 

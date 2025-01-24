@@ -11,6 +11,10 @@ export type DragLayoutProps = Layout & {
    */
   id: number
   /**
+   * Layout Content
+   */
+  content: string
+  /**
    * Column Elements
    */
   [columnId: number]: DragElementProps

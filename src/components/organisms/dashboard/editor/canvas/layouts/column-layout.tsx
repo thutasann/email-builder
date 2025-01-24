@@ -13,6 +13,7 @@ import LogoElement from '../elements/logo-element'
 import LogoHeaderElement from '../elements/logo-header-element'
 import SocialIconsElement from '../elements/social-icons'
 import TextElement from '../elements/text-element'
+import SelectedElementRibbon from './selected-element-ribbon'
 
 /** DrageOver Local State Type */
 type DragOver = {
@@ -102,6 +103,20 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
     }
   }, [])
 
+  /** Handle Delete Element */
+  const handleDeleteElement = useCallback((index: number) => {
+    setEmailTemplate((prev) => {
+      return prev.map((col) => {
+        if (col.id === layout.id) {
+          const updatedCol = { ...col }
+          delete updatedCol[index]
+          return updatedCol
+        }
+        return col
+      })
+    })
+  }, [])
+
   return (
     <div
       style={{
@@ -125,20 +140,26 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
           onDragOver={(event) => handleDragOver(event, index)}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          onClick={() =>
-            setSelectedElement({
-              layout,
-              index,
-            })
-          }
+          onClick={() => {
+            if (layout?.[index]?.type) {
+              setSelectedElement({
+                layout,
+                index,
+              })
+            }
+          }}
         >
-          {/* {selectedElement?.layout?.id === layout.id && selectedElement?.index === index && layout?.[index]?.type && (
-            <SelectedElementBadge element={selectedElement?.layout?.[index]} />
-          )} */}
+          {selectedElement?.layout?.id === layout.id && selectedElement?.index === index && layout?.[index]?.type && (
+            <SelectedElementRibbon
+              element={selectedElement?.layout?.[index]}
+              onDelete={() => handleDeleteElement(index)}
+            />
+          )}
+
           {layout?.[index] ? (
             getElementComponent(layout?.[index])
           ) : (
-            <span className='text-sm font-semibold text-slate-600'>Drag Element Here</span>
+            <span className='text-xs lg:text-sm font-semibold text-slate-600 py-2'>Drag Element Here</span>
           )}
         </div>
       ))}

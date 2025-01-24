@@ -1,3 +1,5 @@
+'use client'
+
 import Canvas from '@/components/organisms/dashboard/editor/canvas'
 import EditorHeader from '@/components/organisms/dashboard/editor/editor-header'
 import ElementsSidebar from '@/components/organisms/dashboard/editor/elements-sidebar'
