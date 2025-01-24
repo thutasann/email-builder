@@ -82,19 +82,19 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
     if (!element) return null
     switch (element.type) {
       case 'Button':
-        return <ButtonElement />
+        return <ButtonElement element={element} />
       case 'Text':
-        return <TextElement />
+        return <TextElement element={element} />
       case 'Image':
-        return <ImageElement />
+        return <ImageElement element={element} />
       case 'Logo':
-        return <LogoElement />
+        return <LogoElement element={element} />
       case 'LogoHeader':
-        return <LogoHeaderElement />
+        return <LogoHeaderElement element={element} />
       case 'Divider':
-        return <DividerElement />
+        return <DividerElement element={element} />
       case 'SocialIcons':
-        return <SocialIconsElement />
+        return <SocialIconsElement element={element} />
       default:
         return null
     }
@@ -112,8 +112,9 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
         <div
           key={index}
           className={cn(
-            'p-2 bg-slate-200 border border-dashed border-slate-400 flex items-center justify-center',
+            'p-2 bg-white flex items-center transition-all duration-300 justify-center border border-white hover:border hover:border-dashed hover:border-slate-400',
             dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-300',
+            !layout?.[index]?.type && 'bg-slate-200 border border-dashed border-slate-400',
           )}
           onDragOver={(event) => handleDragOver(event, index)}
           onDragLeave={handleDragLeave}

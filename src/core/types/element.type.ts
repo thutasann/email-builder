@@ -1,9 +1,40 @@
 import { Icon } from './icon.type'
 import { LayoutElementType } from './layout-element-type.type'
 
-/**
- * Element Props
- */
+type CommonStyles = {
+  backgroundColor?: string
+  color?: string
+  padding?: string
+  width?: string | number
+}
+
+type OuterStyles = {
+  display?: string
+  justifyContent?: string
+  alignItems?: string
+  backgroundColor?: string
+  width?: string
+  gap?: number
+}
+
+type TextStyles = CommonStyles & {
+  textAlign?: string
+  fontSize?: string
+  fontWeight?: string
+  textTransform?: string
+}
+
+type ImageStyles = CommonStyles & {
+  height?: string
+  margin?: string
+  borderRadius?: string
+}
+
+type SocialIcon = {
+  icon: string
+  url: string
+}
+
 export type Element =
   | {
       icon: Icon
@@ -11,42 +42,18 @@ export type Element =
       type: LayoutElementType
       content: string
       url: string
-      style: {
-        textAlign: string
-        backgroundColor: string
-        color: string
-        padding: string
-        width: string
-        fontSize: string
-        borderRadius: string
-        fontWeight: string
-        objectFit: string
+      style: TextStyles & {
+        objectFit?: string
       }
-      outerStyle: {
-        display: string
-        justifyContent: string
-        alignItems: string
-        width: string
-      }
+      outerStyle: OuterStyles
     }
   | {
       icon: Icon
       type: LayoutElementType
       label: string
       textarea: string
-      style: {
-        backgroundColor: string
-        color: string
-        padding: string
-        textAlign: string
-        fontSize: string
-        fontWeight: string
-        textTransform: string
-      }
-      outerStyle: {
-        backgroundColor: string
-        width: string
-      }
+      style: TextStyles
+      outerStyle: Pick<OuterStyles, 'backgroundColor' | 'width'>
     }
   | {
       icon: Icon
@@ -55,51 +62,26 @@ export type Element =
       imageUrl: string
       alt: string
       url: string
-      style: {
-        backgroundColor: string
-        padding: string
-        height: string
-        width: string
-        margin?: string
-        borderRadius: string
-      }
-      outerStyle: {
-        display: string
-        justifyContent: string
-        alignItems: string
-        backgroundColor: string
-        width: string
-      }
+      style: ImageStyles
+      outerStyle: OuterStyles
     }
   | {
       icon: Icon
       type: LayoutElementType
       label: string
       content: string
-      style: {
-        color: string
-        padding: string
-        width: string
-      }
+      style: Pick<CommonStyles, 'color' | 'padding' | 'width'>
     }
   | {
       type: LayoutElementType
       icon: Icon
       label: string
-      socialIcons: {
-        icon: string
-        url: string
-      }[]
-      options: {
-        icon: string
-        url: string
-      }[]
+      socialIcons: SocialIcon[]
+      options: SocialIcon[]
       style: {
         width: number
         height: number
+        color?: string
       }
-      outerStyle: {
-        display: string
-        gap: number
-      }
+      outerStyle: Pick<OuterStyles, 'display' | 'gap'>
     }

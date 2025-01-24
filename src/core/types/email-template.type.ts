@@ -1,9 +1,9 @@
+import { CSSProperties } from 'react'
 import { Element } from './element.type'
 import { Layout } from './layout.type'
 
 /**
  * Drag Layout Props
- * - Type Def for Layout Drag & Drop
  */
 export type DragLayoutProps = Layout & {
   /**
@@ -18,18 +18,32 @@ export type DragLayoutProps = Layout & {
 
 /**
  * Drag Element Props
- * - Type Def for Element Drag & Drop
  */
 export type DragElementProps = Element & {
   /**
    * Element ID
    */
   id: number
+  /**
+   * Element Link
+   */
+  url?: string
+  /**
+   * Element Outer Style
+   */
+  outerStyle?: CSSProperties
+  /**
+   * Element Image URL
+   */
+  imageUrl?: string
+  /**
+   * Element Image Alt
+   */
+  alt?: string
 }
 
 /**
  * Drag Layout Element Props
- * - Type Def for Layout and Element Drag & Drop
  */
 export type DragLayoutElement = DragLayoutProps & DragElementProps
 

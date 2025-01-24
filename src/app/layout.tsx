@@ -1,4 +1,5 @@
 import Providers from '@/core/providers'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
@@ -29,7 +30,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}>
-        <Providers>{children}</Providers>
+        <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>
+          <Providers>{children}</Providers>
+        </GoogleOAuthProvider>
       </body>
     </html>
   )
