@@ -3,9 +3,10 @@
 import { useDNDLayout } from '@/core/providers/contexts/dnd-layout-context'
 import { useEmailTemplate } from '@/core/providers/contexts/email-template-context'
 import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
-import { DragLayoutElement } from '@/core/types/email-template.type'
+import { DragLayoutElement, DragLayoutProps } from '@/core/types/email-template.type'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
+import ColumnLayout from '../layout-elements/column-layout'
 
 /**
  * ## Canvas Area for Email Template builder
@@ -41,7 +42,7 @@ function Canvas() {
   /** Get Layout Component */
   const getLayoutComponent = useCallback((layout: DragLayoutElement) => {
     if (layout.type === 'column') {
-      return <div key={layout.id}>Column {layout.id}</div>
+      return <ColumnLayout layout={layout as DragLayoutProps} />
     }
     return <div key={layout.id}>Element {layout.id}</div>
   }, [])
