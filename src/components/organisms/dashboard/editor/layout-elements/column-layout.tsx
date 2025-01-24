@@ -20,14 +20,11 @@ type DragOver = {
  * - This component renders the column layout and handles the drag and drop of elements
  */
 function ColumnLayout({ layout }: ColumnLayoutProps) {
-  console.log('layout', layout)
   const { dragElementLayout } = useDNDLayout()
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
   const [dragOver, setDragOver] = useState<DragOver | null>(null)
 
-  /**
-   * Handle Drag Over for Elements
-   */
+  /** Handle Drag Over for Elements */
   const handleDragOver = useCallback(
     (event: React.DragEvent<HTMLDivElement>, index: number) => {
       event.preventDefault()
@@ -39,9 +36,16 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
     [setDragOver],
   )
 
-  /**
-   * Handle Drop for Elements
-   */
+  /** Handle Drag Leave for Elements */
+  const handleDragLeave = useCallback(
+    (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault()
+      setDragOver(null)
+    },
+    [setDragOver],
+  )
+
+  /** Handle Drop for Elements */
   const handleDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
       if (!dragOver) return
@@ -62,9 +66,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
     [dragOver, setEmailTemplate, setDragOver],
   )
 
-  /**
-   * Get Element Component
-   */
+  /** Get Element Component */
   const getElementComponent = useCallback((element: DragElementProps) => {
     if (!element) return null
     return <div key={element?.id}>Element {element?.id}</div>
@@ -86,6 +88,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
             dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-400',
           )}
           onDragOver={(event) => handleDragOver(event, index)}
+          onDragLeave={handleDragLeave}
           onDrop={handleDrop}
         >
           {layout?.[index] ? (

@@ -10,6 +10,8 @@ import ColumnLayout from '../layout-elements/column-layout'
 
 /**
  * ## Canvas Area for Email Template builder
+ * - This component renders the canvas area for the email template builder
+ * - It handles the drag and drop of layouts and elements
  */
 function Canvas() {
   const { screenSize } = useScreenSize()
@@ -40,6 +42,11 @@ function Canvas() {
     [dragElementLayout],
   )
 
+  /** Handle Drag Leave */
+  const handleDragLeave = useCallback(() => {
+    setIsDragOver(false)
+  }, [setIsDragOver])
+
   /** Get Layout Component */
   const getLayoutComponent = useCallback((layout: DragLayoutElement) => {
     if (layout.type === 'column') {
@@ -57,6 +64,7 @@ function Canvas() {
         )}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+        onDragLeave={handleDragLeave}
       >
         {/* Email Template Rendering */}
         {emailTemplate?.length > 0 ? (
