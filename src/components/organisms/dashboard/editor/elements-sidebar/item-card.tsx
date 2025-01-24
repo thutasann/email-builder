@@ -1,5 +1,5 @@
-import { Element } from '@/core/libraries/configs/elements'
-import { Layout } from '@/core/libraries/configs/layouts'
+import { Element } from '@/core/types/element.type'
+import { Layout } from '@/core/types/layout.type'
 
 function ItemCard({ item }: { item: Layout | Element }) {
   return (

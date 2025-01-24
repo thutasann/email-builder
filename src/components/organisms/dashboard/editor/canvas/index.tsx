@@ -14,6 +14,7 @@ import ColumnLayout from '../layout-elements/column-layout'
 function Canvas() {
   const { screenSize } = useScreenSize()
   const { layout } = useDNDLayout()
+  console.log('layout', layout)
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
   const [isDragOver, setIsDragOver] = useState(false)
 

@@ -1,7 +1,8 @@
 'use client'
 
-import { Layout, layouts } from '@/core/libraries/configs/layouts'
+import { layouts } from '@/core/libraries/configs/layouts'
 import { useDNDLayout } from '@/core/providers/contexts/dnd-layout-context'
+import { Layout } from '@/core/types/layout.type'
 import { Fragment, useCallback } from 'react'
 import ItemCard from './item-card'
 
@@ -12,11 +13,14 @@ function LayoutCards() {
    * Handle Layout Drag Start
    */
   const handleDragStart = useCallback((event: React.DragEvent<HTMLDivElement>, layout: Layout) => {
-    setLayout({
-      dragLayout: {
-        ...layout,
-        id: Date.now(),
-      },
+    setLayout((prev) => {
+      return {
+        ...prev,
+        dragLayout: {
+          ...layout,
+          id: Date.now(),
+        },
+      }
     })
   }, [])
 

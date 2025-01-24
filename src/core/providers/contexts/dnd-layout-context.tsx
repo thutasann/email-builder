@@ -1,24 +1,28 @@
 'use client'
 
-import { DragLayoutProps } from '@/core/types/email-template.type'
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { DragElementProps, DragLayoutProps } from '@/core/types/email-template.type'
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
 
-type DragLayout = {
+type DragLayoutElement = {
   /**
    * Drag Layout
    */
-  dragLayout: DragLayoutProps
+  dragLayout: DragLayoutProps | null
+  /**
+   * Drag Element
+   */
+  dragElement: DragElementProps | null
 }
 
 type DNDLayoutContextType = {
   /**
    * Drag and Drop Layout
    */
-  layout: DragLayout | null
+  layout: DragLayoutElement | null
   /**
-   * Set Drag and Drop Layout
+   * Set Drag and Drop Layout and Element
    */
-  setLayout: (layout: DragLayout) => void
+  setLayout: Dispatch<SetStateAction<DragLayoutElement>>
 }
 
 const DNDLayoutContext = createContext<DNDLayoutContextType>({
@@ -30,8 +34,10 @@ const DNDLayoutContext = createContext<DNDLayoutContextType>({
  * ## DND Layout Provider
  */
 export const DNDLayoutProvider = ({ children }: { children: ReactNode }) => {
-  const [layout, setLayout] = useState<DragLayout | null>(null)
-
+  const [layout, setLayout] = useState<DragLayoutElement>({
+    dragLayout: null,
+    dragElement: null,
+  })
   return <DNDLayoutContext.Provider value={{ layout, setLayout }}>{children}</DNDLayoutContext.Provider>
 }
 
