@@ -3,7 +3,7 @@
 import { useDNDLayout } from '@/core/providers/contexts/dnd-layout-context'
 import { useEmailTemplate } from '@/core/providers/contexts/email-template-context'
 import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
-import { DragLayoutElement, DragLayoutProps } from '@/core/types/email-template.type'
+import { DragLayoutElement, EmailTemplate } from '@/core/types/email-template.type'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
 import ColumnLayout from '../layout-elements/column-layout'
@@ -18,20 +18,22 @@ function Canvas() {
   const [isDragOver, setIsDragOver] = useState(false)
 
   /** Handle Drag Over */
-  const handleDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    setIsDragOver(true)
-  }, [])
+  const handleDragOver = useCallback(
+    (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault()
+      setIsDragOver(true)
+    },
+    [setIsDragOver],
+  )
 
   /** Handle Drop for Layouts and Elements */
   const handleDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault()
-      console.log('dragElementLayout', dragElementLayout)
       setIsDragOver(false)
       if (dragElementLayout?.dragLayout) {
         setEmailTemplate((prev) => {
-          return [...prev, dragElementLayout.dragLayout]
+          return [...prev, dragElementLayout.dragLayout] as EmailTemplate
         })
       }
     },
@@ -41,9 +43,8 @@ function Canvas() {
   /** Get Layout Component */
   const getLayoutComponent = useCallback((layout: DragLayoutElement) => {
     if (layout.type === 'column') {
-      return <ColumnLayout layout={layout as DragLayoutProps} />
+      return <ColumnLayout layout={layout} />
     }
-    return <div key={layout.id}>Element {layout.id}</div>
   }, [])
 
   return (
@@ -57,6 +58,7 @@ function Canvas() {
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
+        {/* Email Template Rendering */}
         {emailTemplate?.length > 0 ? (
           emailTemplate?.map((layout, index) => <div key={index}>{getLayoutComponent(layout)}</div>)
         ) : (

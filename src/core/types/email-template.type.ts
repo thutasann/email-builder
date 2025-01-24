@@ -6,7 +6,14 @@ import { Layout } from './layout.type'
  * - Type Def for Layout Drag & Drop
  */
 export type DragLayoutProps = Layout & {
+  /**
+   * Layout ID
+   */
   id: number
+  /**
+   * Column Elements
+   */
+  [key: number]: DragElementProps
 }
 
 /**
@@ -14,6 +21,9 @@ export type DragLayoutProps = Layout & {
  * - Type Def for Element Drag & Drop
  */
 export type DragElementProps = Element & {
+  /**
+   * Element ID
+   */
   id: number
 }
 
@@ -21,7 +31,7 @@ export type DragElementProps = Element & {
  * Drag Layout Element Props
  * - Type Def for Layout and Element Drag & Drop
  */
-export type DragLayoutElement = DragLayoutProps | DragElementProps
+export type DragLayoutElement = DragLayoutProps & DragElementProps
 
 /**
  * Email Template Props

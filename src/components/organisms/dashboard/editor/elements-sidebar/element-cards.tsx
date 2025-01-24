@@ -12,14 +12,17 @@ function ElementCards() {
   /**
    * Handle Element Drag Start
    */
-  const handleDragStart = useCallback((event: React.DragEvent<HTMLDivElement>, element: Element) => {
-    setDragElementLayout({
-      dragElement: {
-        ...element,
-        id: Date.now(),
-      },
-    })
-  }, [])
+  const handleDragStart = useCallback(
+    (event: React.DragEvent<HTMLDivElement>, element: Element) => {
+      setDragElementLayout({
+        dragElement: {
+          ...element,
+          id: Date.now(),
+        },
+      })
+    },
+    [setDragElementLayout],
+  )
 
   return (
     <Fragment>

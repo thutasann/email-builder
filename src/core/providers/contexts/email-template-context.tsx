@@ -1,10 +1,11 @@
 'use client'
 
+import { EmailTemplate } from '@/core/types/email-template.type'
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
 
 type EmailTemplateContextType = {
-  emailTemplate: any[]
-  setEmailTemplate: Dispatch<SetStateAction<any[]>>
+  emailTemplate: EmailTemplate
+  setEmailTemplate: Dispatch<SetStateAction<EmailTemplate>>
 }
 
 const EmailTemplateContext = createContext<EmailTemplateContextType>({
@@ -16,7 +17,7 @@ const EmailTemplateContext = createContext<EmailTemplateContextType>({
  * ## Email Template Provider
  */
 export const EmailTemplateProvider = ({ children }: { children: ReactNode }) => {
-  const [emailTemplate, setEmailTemplate] = useState<any[]>([])
+  const [emailTemplate, setEmailTemplate] = useState<EmailTemplate>([])
 
   return (
     <EmailTemplateContext.Provider value={{ emailTemplate, setEmailTemplate }}>
