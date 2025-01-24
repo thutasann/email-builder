@@ -55,10 +55,10 @@ function Canvas() {
   }, [])
 
   return (
-    <div className='mt-20 flex justify-center p-2'>
+    <div className='mt-10 flex justify-center p-2'>
       <div
         className={cn(
-          'bg-white p-6 w-full transition-all duration-300 rounded-sm',
+          'bg-white px-6 py-10 w-full transition-all duration-300 rounded-sm',
           screenSize === 'desktop' ? 'max-w-2xl' : 'max-w-sm',
           isDragOver && 'bg-slate-200',
         )}

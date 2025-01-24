@@ -89,8 +89,8 @@ export const elements: Element[] = [
     style: {
       backgroundColor: '',
       padding: '0px',
-      height: '50%',
-      width: '70%',
+      height: '30%',
+      width: '30%',
       margin: '0px',
       borderRadius: '0px',
     },

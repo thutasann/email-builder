@@ -2,6 +2,7 @@
 
 import { useDNDLayout } from '@/core/providers/contexts/dnd-layout-context'
 import { useEmailTemplate } from '@/core/providers/contexts/email-template-context'
+import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
 import { DragElementProps, DragLayoutProps } from '@/core/types/email-template.type'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
@@ -32,6 +33,7 @@ type ColumnLayoutProps = {
 function ColumnLayout({ layout }: ColumnLayoutProps) {
   const { dragElementLayout } = useDNDLayout()
   const { setEmailTemplate } = useEmailTemplate()
+  const { selectedElement, setSelectedElement } = useSelectedElement()
   const [dragOver, setDragOver] = useState<DragOver | null>(null)
 
   /** Handle Drag Over for Elements */
@@ -112,14 +114,27 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
         <div
           key={index}
           className={cn(
-            'p-2 bg-white flex items-center transition-all duration-300 justify-center border border-white hover:border hover:border-dashed hover:border-slate-400',
+            'p-2 bg-white relative flex cursor-pointer items-center justify-center border border-white hover:border',
             dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-300',
-            !layout?.[index]?.type && 'bg-slate-200 border border-dashed border-slate-400',
+            !layout?.[index]?.type && 'bg-slate-100 border border-dashed border-slate-400',
+            selectedElement?.layout?.id === layout.id &&
+              selectedElement?.index === index &&
+              layout?.[index]?.type &&
+              'border-blue-500',
           )}
           onDragOver={(event) => handleDragOver(event, index)}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
+          onClick={() =>
+            setSelectedElement({
+              layout,
+              index,
+            })
+          }
         >
+          {/* {selectedElement?.layout?.id === layout.id && selectedElement?.index === index && layout?.[index]?.type && (
+            <SelectedElementBadge element={selectedElement?.layout?.[index]} />
+          )} */}
           {layout?.[index] ? (
             getElementComponent(layout?.[index])
           ) : (

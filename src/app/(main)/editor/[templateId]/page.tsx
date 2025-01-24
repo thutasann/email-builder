@@ -9,7 +9,7 @@ function EditorPage() {
       <EditorHeader />
       <div className='grid grid-cols-5 mt-3 gap-4'>
         <ElementsSidebar />
-        <div className='col-span-3 bg-gray-100'>
+        <div className='col-span-3 bg-gray-100 h-[90vh] overflow-y-auto'>
           <Canvas />
         </div>
         <Settings />

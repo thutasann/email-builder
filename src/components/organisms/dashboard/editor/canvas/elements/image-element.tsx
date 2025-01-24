@@ -1,5 +1,5 @@
 import { DragElementProps } from '@/core/types/email-template.type'
-import { CSSProperties } from 'react'
+import { CSSProperties, memo } from 'react'
 
 type ImageElementProps = {
   element: DragElementProps
@@ -16,4 +16,4 @@ function ImageElement({ element }: ImageElementProps) {
   )
 }
 
-export default ImageElement
+export default memo(ImageElement)

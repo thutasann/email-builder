@@ -1,4 +1,5 @@
 import { DragElementProps } from '@/core/types/email-template.type'
+import { memo } from 'react'
 
 type SocialIconsElementProps = {
   element: DragElementProps
@@ -11,4 +12,4 @@ function SocialIconsElement({ element }: SocialIconsElementProps) {
   return <div>{element.label}</div>
 }
 
-export default SocialIconsElement
+export default memo(SocialIconsElement)

@@ -24,7 +24,6 @@ export const EmailTemplateProvider = ({ children }: { children: ReactNode }) => 
   /** Save email template to localStorage */
   useEffect(() => {
     if (emailTemplate && emailTemplate.length > 0) {
-      console.log('==> setting emailTemplate', emailTemplate)
       localStorage.setItem('emailTemplate', JSON.stringify(emailTemplate))
     }
   }, [emailTemplate])
