@@ -13,8 +13,7 @@ import ColumnLayout from '../layout-elements/column-layout'
  */
 function Canvas() {
   const { screenSize } = useScreenSize()
-  const { layout } = useDNDLayout()
-  console.log('layout', layout)
+  const { dragElementLayout } = useDNDLayout()
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
   const [isDragOver, setIsDragOver] = useState(false)
 
@@ -28,16 +27,15 @@ function Canvas() {
   const handleDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault()
+      console.log('dragElementLayout', dragElementLayout)
       setIsDragOver(false)
-      setEmailTemplate((prev) => {
-        if (!layout?.dragLayout) return prev
-        if (prev) {
-          return [...prev, layout.dragLayout]
-        }
-        return [layout.dragLayout]
-      })
+      if (dragElementLayout?.dragLayout) {
+        setEmailTemplate((prev) => {
+          return [...prev, dragElementLayout.dragLayout]
+        })
+      }
     },
-    [layout],
+    [dragElementLayout],
   )
 
   /** Get Layout Component */

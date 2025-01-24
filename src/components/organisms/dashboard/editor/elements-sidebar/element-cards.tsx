@@ -7,20 +7,17 @@ import { Fragment, useCallback } from 'react'
 import ItemCard from './item-card'
 
 function ElementCards() {
-  const { setLayout } = useDNDLayout()
+  const { setDragElementLayout } = useDNDLayout()
 
   /**
    * Handle Element Drag Start
    */
   const handleDragStart = useCallback((event: React.DragEvent<HTMLDivElement>, element: Element) => {
-    setLayout((prev) => {
-      return {
-        ...prev,
-        dragElement: {
-          ...element,
-          id: Date.now(),
-        },
-      }
+    setDragElementLayout({
+      dragElement: {
+        ...element,
+        id: Date.now(),
+      },
     })
   }, [])
 
