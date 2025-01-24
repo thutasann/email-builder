@@ -6,7 +6,7 @@ import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { DragLayoutElement, EmailTemplate } from '@/core/types/email-template.type'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
-import ColumnLayout from '../layout-elements/column-layout'
+import ColumnLayout from './layouts/column-layout'
 
 /**
  * ## Canvas Area for Email Template builder

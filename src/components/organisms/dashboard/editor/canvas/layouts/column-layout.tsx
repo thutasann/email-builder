@@ -5,23 +5,33 @@ import { useEmailTemplate } from '@/core/providers/contexts/email-template-conte
 import { DragElementProps, DragLayoutProps } from '@/core/types/email-template.type'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
+import ButtonElement from '../elements/button-element'
+import DividerElement from '../elements/divider-element'
+import ImageElement from '../elements/image-element'
+import LogoElement from '../elements/logo-element'
+import LogoHeaderElement from '../elements/logo-header-element'
+import SocialIconsElement from '../elements/social-icons'
+import TextElement from '../elements/text-element'
 
-type ColumnLayoutProps = {
-  layout: DragLayoutProps
-}
-
+/** DrageOver Local State Type */
 type DragOver = {
   index: number
   columnId: number
 }
 
+/** Column Layout Props */
+type ColumnLayoutProps = {
+  layout: DragLayoutProps
+}
+
 /**
- * ## Column Layout Component
+ * ## Column Layout
  * - This component renders the column layout and handles the drag and drop of elements
+ * - It also handles the drag over, drag leave, and drop of elements
  */
 function ColumnLayout({ layout }: ColumnLayoutProps) {
   const { dragElementLayout } = useDNDLayout()
-  const { emailTemplate, setEmailTemplate } = useEmailTemplate()
+  const { setEmailTemplate } = useEmailTemplate()
   const [dragOver, setDragOver] = useState<DragOver | null>(null)
 
   /** Handle Drag Over for Elements */
@@ -48,6 +58,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
   /** Handle Drop for Elements */
   const handleDrop = useCallback(
     (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault()
       if (!dragOver) return
       const index = dragOver.index
       setEmailTemplate((prev) => {
@@ -69,7 +80,24 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
   /** Get Element Component */
   const getElementComponent = useCallback((element: DragElementProps) => {
     if (!element) return null
-    return <div key={element?.id}>Element {element?.id}</div>
+    switch (element.type) {
+      case 'Button':
+        return <ButtonElement />
+      case 'Text':
+        return <TextElement />
+      case 'Image':
+        return <ImageElement />
+      case 'Logo':
+        return <LogoElement />
+      case 'LogoHeader':
+        return <LogoHeaderElement />
+      case 'Divider':
+        return <DividerElement />
+      case 'SocialIcons':
+        return <SocialIconsElement />
+      default:
+        return null
+    }
   }, [])
 
   return (
@@ -85,7 +113,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
           key={index}
           className={cn(
             'p-2 bg-slate-200 border border-dashed border-slate-400 flex items-center justify-center',
-            dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-400',
+            dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-300',
           )}
           onDragOver={(event) => handleDragOver(event, index)}
           onDragLeave={handleDragLeave}

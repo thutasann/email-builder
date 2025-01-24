@@ -13,7 +13,7 @@ export type DragLayoutProps = Layout & {
   /**
    * Column Elements
    */
-  [key: number]: DragElementProps
+  [columnId: number]: DragElementProps
 }
 
 /**
