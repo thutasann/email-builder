@@ -1,7 +1,7 @@
 'use client'
 
-import { useKeyboardEvent } from '@/core/libraries/hooks/use-keyboard-event'
 import { DragLayoutElement, DragLayoutProps, EmailTemplate } from '@/core/types/email-template.type'
+import { useKeyboardEvent } from '@/hooks/use-keyboard-event'
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react'
 import { useEmailTemplate } from './email-template-context'
 
