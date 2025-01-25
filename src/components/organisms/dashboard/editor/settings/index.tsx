@@ -10,6 +10,7 @@ function Settings() {
   const { selectedElement, setSelectedElement } = useSelectedElement()
   const [element, setElement] = useState<DragElementProps | null>(null)
 
+  /** set element based on the selected element */
   useEffect(() => {
     if (selectedElement?.layout?.[selectedElement?.index]) {
       setElement(selectedElement?.layout?.[selectedElement?.index])
@@ -63,13 +64,14 @@ function Settings() {
   )
 
   return (
-    <div className='px-5 py-10'>
+    <aside className='px-5 py-10'>
       <h2 className='text-lg mb-2 font-semibold text-slate-700'>{element ? element.type : 'Settings'}</h2>
-      {!element && <p className='text-sm text-slate-700'>Select an element to view its settings</p>}
-      {element && (
+      {element ? (
         <SettingsFields element={element} handleInputChange={handleInputChange} handleStyleChange={handleStyleChange} />
+      ) : (
+        <p className='text-sm text-slate-700'>Select an element to view its settings</p>
       )}
-    </div>
+    </aside>
   )
 }
 

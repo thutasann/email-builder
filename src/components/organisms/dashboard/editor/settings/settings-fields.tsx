@@ -1,12 +1,13 @@
 'use client'
 
 import ColorPickerField from '@/components/atom/color-picker-field'
+import DropdownField from '@/components/atom/dropdown-field'
 import InputField from '@/components/atom/input-field'
 import InputStyleField from '@/components/atom/input-style-field'
 import SlideField from '@/components/atom/slider-field'
 import TextAreaField from '@/components/atom/text-area-field'
 import ToggleGroupField from '@/components/atom/toggle-group-field'
-import { textAlignOptions } from '@/core/libraries/configs/settings.config'
+import { fontWeightOptions, textAlignOptions, textTransformOptions } from '@/core/libraries/configs/settings.config'
 import { CommonStyles } from '@/core/types/element.type'
 import { DragElementProps } from '@/core/types/email-template.type'
 
@@ -19,6 +20,9 @@ type SettingsFieldsProps = {
   handleStyleChange: (field: StyleFieldName, value: string) => void
 }
 
+/**
+ * Settings Fields that will be used to edit the element
+ */
 function SettingsFields({ element, handleInputChange, handleStyleChange }: SettingsFieldsProps) {
   return (
     <section className='space-y-6'>
@@ -35,6 +39,33 @@ function SettingsFields({ element, handleInputChange, handleStyleChange }: Setti
           label='TextArea'
           value={element?.textarea}
           onChange={(value) => handleInputChange('textarea', value)}
+        />
+      )}
+
+      {element?.style?.textAlign && (
+        <ToggleGroupField
+          label='Text Align'
+          options={textAlignOptions}
+          value={element?.style?.textAlign}
+          onChange={(value) => handleStyleChange('textAlign', value)}
+        />
+      )}
+
+      {element?.style?.textTransform && (
+        <ToggleGroupField
+          label='Text Transform'
+          options={textTransformOptions}
+          value={element?.style?.textTransform}
+          onChange={(value) => handleStyleChange('textTransform', value)}
+        />
+      )}
+
+      {element?.style?.fontWeight && (
+        <DropdownField
+          label='Font Weight'
+          value={element?.style?.fontWeight}
+          options={fontWeightOptions}
+          onChange={(value) => handleStyleChange('fontWeight', value)}
         />
       )}
 
@@ -88,15 +119,6 @@ function SettingsFields({ element, handleInputChange, handleStyleChange }: Setti
           value={element?.style?.width as number}
           unit='%'
           onChange={(value) => handleStyleChange('width', value.toString())}
-        />
-      )}
-
-      {element?.style?.textAlign && (
-        <ToggleGroupField
-          label='Text Align'
-          options={textAlignOptions}
-          value={element?.style?.textAlign}
-          onChange={(value) => handleStyleChange('textAlign', value)}
         />
       )}
     </section>
