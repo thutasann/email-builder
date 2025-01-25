@@ -1,6 +1,6 @@
 import DashboardWelcome from '@/components/organisms/dashboard/welcome'
 import EmailTemplateList from '@/components/organisms/dashboard/welcome/email-template-list'
-import Header from '@/components/organisms/Landing/header'
+import Header from '@/components/organisms/landing/header'
 import { Fragment } from 'react'
 
 function DashboardMainPage() {
