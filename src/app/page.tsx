@@ -1,5 +1,5 @@
-import Header from '@/components/organisms/landing/header'
-import Hero from '@/components/organisms/landing/hero'
+import Header from '@/components/organisms/site/header'
+import Hero from '@/components/organisms/site/hero'
 import { Fragment } from 'react'
 
 export default function Home() {
