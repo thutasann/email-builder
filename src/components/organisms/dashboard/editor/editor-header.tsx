@@ -11,7 +11,6 @@ import { useCallback } from 'react'
 function EditorHeader() {
   const { screenSize, setScreenSize, mode, setMode } = useScreenSize()
   const { setSelectedElement } = useSelectedElement()
-  console.log('mode', mode)
 
   /** handle save template */
   const handleSaveTemplate = useCallback(() => {}, [])

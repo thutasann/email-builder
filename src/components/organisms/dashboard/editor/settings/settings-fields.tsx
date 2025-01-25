@@ -2,22 +2,24 @@
 
 import ColorPickerField from '@/components/atom/color-picker-field'
 import DropdownField from '@/components/atom/dropdown-field'
+import ImagePreview from '@/components/atom/image/image-preview'
 import InputField from '@/components/atom/input-field'
 import InputStyleField from '@/components/atom/input-style-field'
 import SlideField from '@/components/atom/slider-field'
 import TextAreaField from '@/components/atom/text-area-field'
 import ToggleGroupField from '@/components/atom/toggle-group-field'
+import { Separator } from '@/components/ui/separator'
 import { fontWeightOptions, textAlignOptions, textTransformOptions } from '@/core/libraries/configs/settings.config'
 import { CommonStyles } from '@/core/types/element.type'
 import { DragElementProps } from '@/core/types/email-template.type'
 
-export type FieldName = 'content' | 'url' | 'textarea'
+export type FieldName = 'content' | 'url' | 'textarea' | 'imageUrl'
 export type StyleFieldName = keyof CommonStyles
 
 type SettingsFieldsProps = {
   element: DragElementProps
   handleInputChange: (field: FieldName, value: string) => void
-  handleStyleChange: (field: StyleFieldName, value: string) => void
+  handleStyleChange: (field: StyleFieldName, value: string, isOuterStyle?: boolean) => void
 }
 
 /**
@@ -105,6 +107,15 @@ function SettingsFields({ element, handleInputChange, handleStyleChange }: Setti
         />
       )}
 
+      {element?.style?.margin && (
+        <InputStyleField
+          label='Margin'
+          unit='px'
+          value={element?.style?.margin}
+          onChange={(value) => handleStyleChange('margin', value)}
+        />
+      )}
+
       {element?.style?.borderRadius && (
         <SlideField
           label='Border Radius'
@@ -121,6 +132,36 @@ function SettingsFields({ element, handleInputChange, handleStyleChange }: Setti
           onChange={(value) => handleStyleChange('width', value.toString())}
         />
       )}
+
+      {element?.imageUrl && (
+        <ImagePreview
+          label='Image Preview'
+          image={element?.imageUrl}
+          onChange={(value) => handleInputChange('imageUrl', value)}
+        />
+      )}
+
+      <Separator className='my-4' />
+
+      <div className='space-y-6'>
+        <h3 className='text-md text-slate-600 font-semibold'>Outer Styles</h3>
+        {element?.outerStyle?.backgroundColor && (
+          <ColorPickerField
+            label='Background Color'
+            value={element?.outerStyle?.backgroundColor}
+            onChange={(value) => handleStyleChange('backgroundColor', value, true)}
+          />
+        )}
+
+        {element?.outerStyle?.justifyContent && (
+          <ToggleGroupField
+            label='Justify Content'
+            value={element?.outerStyle?.justifyContent}
+            options={textAlignOptions}
+            onChange={(value) => handleStyleChange('justifyContent', value, true)}
+          />
+        )}
+      </div>
     </section>
   )
 }

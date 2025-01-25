@@ -1,5 +1,4 @@
-import { CSSProperties } from 'react'
-import { Element } from './element.type'
+import { CommonStyles, Element } from './element.type'
 import { Layout } from './layout.type'
 
 /**
@@ -37,7 +36,7 @@ export type DragElementProps = Element & {
   /**
    * Element Outer Style
    */
-  outerStyle?: CSSProperties
+  outerStyle?: CommonStyles
   /**
    * Element Image URL
    */

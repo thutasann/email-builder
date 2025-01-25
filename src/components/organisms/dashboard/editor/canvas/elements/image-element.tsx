@@ -10,7 +10,7 @@ type ImageElementProps = {
  */
 function ImageElement({ element }: ImageElementProps) {
   return (
-    <div style={element.outerStyle}>
+    <div style={element.outerStyle as CSSProperties}>
       <img src={element.imageUrl} alt={element.alt} style={element.style as CSSProperties} />
     </div>
   )

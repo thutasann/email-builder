@@ -10,7 +10,14 @@ import {
 } from 'lucide-react'
 
 /**
- * Elements that are used in the editor
+ * ## Elements that are used in the editor
+ * - Button
+ * - Text
+ * - Image
+ * - Logo
+ * - Logo Header
+ * - Divider
+ * - Social Icons
  */
 export const elements: Element[] = [
   {
@@ -24,7 +31,7 @@ export const elements: Element[] = [
       backgroundColor: '#007bff',
       color: '#ffffff',
       padding: '8px',
-      width: 'auto',
+      width: '30%',
       fontSize: '14px',
       borderRadius: '3px',
       fontWeight: 'normal',
@@ -49,7 +56,7 @@ export const elements: Element[] = [
       textAlign: 'center',
       fontSize: '16px',
       fontWeight: 'normal',
-      textTransform: 'uppercase', //lowercase , capitilized
+      textTransform: 'uppercase',
     },
     outerStyle: {
       backgroundColor: '#fff',
@@ -64,7 +71,7 @@ export const elements: Element[] = [
     alt: 'Image',
     url: '#',
     style: {
-      backgroundColor: '',
+      backgroundColor: '#ffffff',
       padding: '0px',
       height: '50%',
       width: '70%',
@@ -76,7 +83,7 @@ export const elements: Element[] = [
       width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '',
+      backgroundColor: '#ffffff',
     },
   },
   {
@@ -87,7 +94,7 @@ export const elements: Element[] = [
     alt: 'logo',
     url: '#',
     style: {
-      backgroundColor: '',
+      backgroundColor: '#ffffff',
       padding: '0px',
       height: '30%',
       width: '30%',
@@ -98,7 +105,7 @@ export const elements: Element[] = [
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '',
+      backgroundColor: '#ffffff',
       width: '100%',
     },
   },
@@ -107,7 +114,7 @@ export const elements: Element[] = [
     type: 'LogoHeader',
     label: 'Logo Header',
     textarea: 'Logo Header',
-    imageUrl: '/logo.svg',
+    // imageUrl: '/logo.png',
     alt: 'logo',
     url: '#',
     style: {
@@ -118,6 +125,7 @@ export const elements: Element[] = [
       borderRadius: '0px',
       fontSize: '24px',
       color: '#000000',
+      fontWeight: 'bold',
     },
     outerStyle: {
       display: 'flex',

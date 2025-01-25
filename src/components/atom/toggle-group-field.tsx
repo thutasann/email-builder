@@ -20,9 +20,9 @@ function ToggleGroupField({ options, value, onChange, label }: ToggleGroupFieldP
       <label className='text-sm text-slate-600 font-semibold' htmlFor={label}>
         {label}
       </label>
-      <ToggleGroup type='single' defaultValue={value} onValueChange={(v) => onChange(v)}>
+      <ToggleGroup type='single' value={value} onValueChange={(v) => onChange(v)}>
         {options.map((option, index) => (
-          <ToggleGroupItem key={index} value={option.value}>
+          <ToggleGroupItem key={index} value={option.value} disabled={value === option.value}>
             <option.icon className='w-4 h-4' />
           </ToggleGroupItem>
         ))}

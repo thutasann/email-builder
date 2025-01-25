@@ -51,7 +51,7 @@ export type Element =
       label: string
       textarea: string
       style: CommonStyles
-      outerStyle: Pick<CommonStyles, 'backgroundColor' | 'width'>
+      outerStyle: CommonStyles
     }
   | {
       icon: Icon
@@ -77,5 +77,5 @@ export type Element =
       socialIcons: SocialIcon[]
       options: SocialIcon[]
       style: CommonStyles
-      outerStyle: Pick<CommonStyles, 'display' | 'gap'>
+      outerStyle: CommonStyles
     }

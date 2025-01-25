@@ -42,17 +42,26 @@ function Settings() {
 
   /** Handle Style Change */
   const handleStyleChange = useCallback(
-    (fieldName: StyleFieldName, value: string) => {
+    (fieldName: StyleFieldName, value: string, isOuterStyle: boolean = false) => {
       const updatedData = { ...selectedElement }
       if (!updatedData.layout || !selectedElement) return
 
       const updatedLayout = { ...updatedData.layout }
       const updatedElement = { ...updatedLayout[selectedElement.index] }
       const updatedStyle = { ...updatedElement.style } as CommonStyles
+      const updatedOuterStyle = { ...updatedElement.outerStyle } as CommonStyles
 
-      updatedStyle[fieldName] = value
+      if (isOuterStyle) {
+        updatedOuterStyle[fieldName] = value
+      } else {
+        updatedStyle[fieldName] = value
+      }
 
       updatedElement.style = updatedStyle
+      updatedElement.outerStyle = updatedOuterStyle
+
+      console.log(updatedElement.outerStyle)
+
       updatedLayout[selectedElement.index] = updatedElement
 
       setSelectedElement({
