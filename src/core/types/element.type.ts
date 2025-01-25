@@ -13,7 +13,7 @@ export type CommonStyles = {
   textAlign?: string
   lineHeight?: string
   letterSpacing?: string
-  borderRadius?: string
+  borderRadius?: string | number
   border?: string
   borderWidth?: string
   borderColor?: string
@@ -68,7 +68,7 @@ export type Element =
       type: LayoutElementType
       label: string
       content: string
-      style: Pick<CommonStyles, 'color' | 'padding' | 'width' | 'backgroundColor'>
+      style: CommonStyles
     }
   | {
       type: LayoutElementType

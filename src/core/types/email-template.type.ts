@@ -3,7 +3,8 @@ import { Element } from './element.type'
 import { Layout } from './layout.type'
 
 /**
- * Drag Layout Props
+ * Extended Drag Layout Props
+ * @todo: Refactor this
  */
 export type DragLayoutProps = Layout & {
   /**
@@ -21,7 +22,8 @@ export type DragLayoutProps = Layout & {
 }
 
 /**
- * Drag Element Props
+ * Extended Drag Element Props
+ * @todo: Refactor this
  */
 export type DragElementProps = Element & {
   /**

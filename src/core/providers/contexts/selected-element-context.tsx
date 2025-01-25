@@ -6,11 +6,11 @@ import { useEmailTemplate } from './email-template-context'
 
 type SelectedElement = {
   /**
-   * Selected ElementLayout
+   * Selected Element Layout
    */
   layout: DragLayoutProps
   /**
-   * Index
+   * Selected Element Index
    */
   index: number
 }

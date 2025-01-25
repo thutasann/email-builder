@@ -10,7 +10,11 @@ type ButtonElementProps = {
  */
 function ButtonElement({ element }: ButtonElementProps) {
   return (
-    <a href={element.url}>
+    <a
+      href={element.url}
+      target={element.url !== '#' ? '_blank' : undefined}
+      rel={element.url !== '#' ? 'noopener noreferrer' : undefined}
+    >
       <button style={element.style as CSSProperties}>{element.content || 'Button'}</button>
     </a>
   )

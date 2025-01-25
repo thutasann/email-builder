@@ -14,7 +14,9 @@ function EditorPage() {
         <div className='col-span-3 bg-gray-100 h-[90vh] overflow-y-auto'>
           <Canvas />
         </div>
-        <Settings />
+        <div className='h-[90vh] overflow-y-auto'>
+          <Settings />
+        </div>
       </div>
     </div>
   )
