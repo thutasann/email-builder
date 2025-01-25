@@ -34,7 +34,7 @@ export const SelectedElementProvider = ({ children }: { children: ReactNode }) =
 
   useEffect(() => {
     if (selectedElement?.layout) {
-      let updatedEmailTemplate: EmailTemplate = []
+      const updatedEmailTemplate: EmailTemplate = []
       emailTemplate.forEach((item, index) => {
         if (item.id === selectedElement?.layout?.id) {
           updatedEmailTemplate.push(selectedElement.layout as DragLayoutElement)

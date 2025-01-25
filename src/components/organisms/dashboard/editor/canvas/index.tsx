@@ -39,7 +39,7 @@ function Canvas() {
         })
       }
     },
-    [dragElementLayout],
+    [dragElementLayout, setEmailTemplate],
   )
 
   /** Handle Drag Leave */

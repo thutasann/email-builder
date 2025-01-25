@@ -6,30 +6,28 @@ type CommonStyles = {
   color?: string
   padding?: string
   width?: string | number
-}
-
-type OuterStyles = {
-  display?: string
-  justifyContent?: string
-  alignItems?: string
-  backgroundColor?: string
-  width?: string
-  gap?: number
-}
-
-type TextStyles = CommonStyles & {
-  textAlign?: string
+  height?: string | number
   fontSize?: string
   fontWeight?: string
   textTransform?: string
-  backgroundColor?: string
-}
-
-type ImageStyles = CommonStyles & {
-  height?: string
-  margin?: string
+  textAlign?: string
+  lineHeight?: string
+  letterSpacing?: string
   borderRadius?: string
-  backgroundColor?: string
+  border?: string
+  borderWidth?: string
+  borderColor?: string
+  objectFit?: string
+  margin?: string
+  borderStyle?: string
+  borderTop?: string
+  borderBottom?: string
+  borderLeft?: string
+  borderRight?: string
+  gap?: string | number
+  display?: string
+  justifyContent?: string
+  alignItems?: string
 }
 
 type SocialIcon = {
@@ -44,18 +42,18 @@ export type Element =
       type: LayoutElementType
       content: string
       url: string
-      style: TextStyles & {
+      style: CommonStyles & {
         objectFit?: string
       }
-      outerStyle: OuterStyles
+      outerStyle: CommonStyles
     }
   | {
       icon: Icon
       type: LayoutElementType
       label: string
       textarea: string
-      style: TextStyles
-      outerStyle: Pick<OuterStyles, 'backgroundColor' | 'width'>
+      style: CommonStyles
+      outerStyle: Pick<CommonStyles, 'backgroundColor' | 'width'>
     }
   | {
       icon: Icon
@@ -64,8 +62,8 @@ export type Element =
       imageUrl: string
       alt: string
       url: string
-      style: ImageStyles
-      outerStyle: OuterStyles
+      style: CommonStyles
+      outerStyle: CommonStyles
     }
   | {
       icon: Icon
@@ -86,5 +84,5 @@ export type Element =
         color?: string
         backgroundColor?: string
       }
-      outerStyle: Pick<OuterStyles, 'display' | 'gap'>
+      outerStyle: Pick<CommonStyles, 'display' | 'gap'>
     }

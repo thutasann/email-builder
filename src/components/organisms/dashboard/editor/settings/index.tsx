@@ -7,6 +7,7 @@ import { DragElementProps } from '@/core/types/email-template.type'
 import { useCallback, useEffect, useState } from 'react'
 
 type FieldName = 'content'
+type StyleFieldName = 'backgroundColor' | 'color'
 
 function Settings() {
   const { selectedElement, setSelectedElement } = useSelectedElement()
@@ -22,9 +23,38 @@ function Settings() {
     (fieldName: FieldName, value: string) => {
       const updatedData = { ...selectedElement }
       if (!updatedData.layout || !selectedElement) return
-      updatedData.layout[selectedElement.index][fieldName] = value
+
+      const updatedLayout = { ...updatedData.layout }
+
+      updatedLayout[selectedElement.index] = {
+        ...updatedLayout[selectedElement.index],
+        [fieldName]: value,
+      }
+
       setSelectedElement({
-        layout: updatedData.layout,
+        layout: updatedLayout,
+        index: selectedElement.index,
+      })
+    },
+    [selectedElement, setSelectedElement],
+  )
+
+  const handleStyleChange = useCallback(
+    (fieldName: StyleFieldName, value: string) => {
+      const updatedData = { ...selectedElement }
+      if (!updatedData.layout || !selectedElement) return
+
+      const updatedLayout = { ...updatedData.layout }
+      const updatedElement = { ...updatedLayout[selectedElement.index] }
+      const updatedStyle = { ...updatedElement.style }
+
+      updatedStyle[fieldName] = value
+
+      updatedElement.style = updatedStyle
+      updatedLayout[selectedElement.index] = updatedElement
+
+      setSelectedElement({
+        layout: updatedLayout,
         index: selectedElement.index,
       })
     },
@@ -47,7 +77,7 @@ function Settings() {
           <ColorPickerField
             label='Background Color'
             value={element?.style?.backgroundColor}
-            onChange={(value) => handleInputChange('content', value)}
+            onChange={(value) => handleStyleChange('backgroundColor', value)}
           />
         )}
       </section>

@@ -11,7 +11,7 @@ type DragElementLayout = Partial<{
   /**
    * Drag Element
    */
-  dragElement: DragElementProps
+  dragElement: Partial<DragElementProps>
 }>
 
 type DNDLayoutContextType = {

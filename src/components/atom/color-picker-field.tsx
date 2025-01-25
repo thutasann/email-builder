@@ -14,7 +14,7 @@ function ColorPickerField({ label, value, onChange }: ColorPickerFieldProps) {
       <label className='text-sm text-slate-600 font-semibold' htmlFor={label}>
         {label}
       </label>
-      <Input value={value} onChange={(e) => onChange(e.target.value)} />
+      <Input type='color' value={value} onChange={(e) => onChange(e.target.value)} />
     </div>
   )
 }

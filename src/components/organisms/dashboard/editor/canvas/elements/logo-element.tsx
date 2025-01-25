@@ -11,6 +11,7 @@ type LogoElementProps = {
 function LogoElement({ element }: LogoElementProps) {
   return (
     <div style={element.outerStyle as CSSProperties}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={element.imageUrl} alt={element.alt} style={element.style as CSSProperties} />
     </div>
   )

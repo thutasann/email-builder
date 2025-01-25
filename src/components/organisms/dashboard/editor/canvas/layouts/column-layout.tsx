@@ -46,7 +46,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
         columnId: layout.id,
       })
     },
-    [setDragOver],
+    [setDragOver, layout.id],
   )
 
   /** Handle Drag Leave for Elements */
@@ -69,7 +69,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
           if (!dragElementLayout?.dragElement) return col
           if (col.id === layout.id) {
             const updatedCol = { ...col }
-            updatedCol[index] = dragElementLayout?.dragElement
+            updatedCol[index] = dragElementLayout?.dragElement as DragElementProps
             return updatedCol
           }
           return col
@@ -77,7 +77,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
       })
       setDragOver(null)
     },
-    [dragOver, setEmailTemplate, setDragOver],
+    [dragOver, setEmailTemplate, setDragOver, layout.id],
   )
 
   /** Get Element Component */
@@ -104,29 +104,32 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
   }, [])
 
   /** Handle Delete Element */
-  const handleDeleteElement = useCallback((index: number) => {
-    setEmailTemplate((prev) => {
-      return prev.map((col) => {
-        if (col.id === layout.id) {
-          const updatedCol = { ...col }
-          delete updatedCol[index]
-          return updatedCol
-        }
-        return col
+  const handleDeleteElement = useCallback(
+    (index: number) => {
+      setEmailTemplate((prev) => {
+        return prev.map((col) => {
+          if (col.id === layout.id) {
+            const updatedCol = { ...col }
+            delete updatedCol[index]
+            return updatedCol
+          }
+          return col
+        })
       })
-    })
 
-    setSelectedElement((prev) => {
-      if (!prev?.layout) return null
-      delete prev?.layout?.[index]
-      return {
-        ...prev,
-        layout: {
-          ...prev?.layout,
-        },
-      }
-    })
-  }, [])
+      setSelectedElement((prev) => {
+        if (!prev?.layout) return null
+        delete prev?.layout?.[index]
+        return {
+          ...prev,
+          layout: {
+            ...prev?.layout,
+          },
+        }
+      })
+    },
+    [layout.id, setSelectedElement],
+  )
 
   return (
     <div
