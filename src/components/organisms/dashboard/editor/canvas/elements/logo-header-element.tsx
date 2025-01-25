@@ -10,7 +10,7 @@ type LogoHeaderElementProps = {
 function LogoHeaderElement({ element }: LogoHeaderElementProps) {
   return (
     <div style={element.outerStyle as CSSProperties}>
-      <h1 style={element.style as CSSProperties}>{element.label}</h1>
+      <h1 style={element.style as CSSProperties}>{element.textarea}</h1>
     </div>
   )
 }

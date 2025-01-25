@@ -37,7 +37,7 @@ export const EmailTemplateProvider = ({ children }: { children: ReactNode }) => 
 
     setTimeout(() => {
       setLoading(false)
-    }, 300)
+    }, 50)
   }, [])
 
   return (

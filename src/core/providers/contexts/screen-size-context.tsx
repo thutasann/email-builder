@@ -4,12 +4,16 @@ import { createContext, ReactNode, useContext, useState } from 'react'
 
 type ScreenSizeContextType = {
   screenSize: 'mobile' | 'desktop'
+  mode: 'preview' | 'edit'
   setScreenSize: (screenSize: 'mobile' | 'desktop') => void
+  setMode: (mode: 'preview' | 'edit') => void
 }
 
 const ScreenSizeContext = createContext<ScreenSizeContextType>({
   screenSize: 'desktop',
+  mode: 'edit',
   setScreenSize: () => {},
+  setMode: () => {},
 })
 
 /**
@@ -17,8 +21,13 @@ const ScreenSizeContext = createContext<ScreenSizeContextType>({
  */
 export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
   const [screenSize, setScreenSize] = useState<'mobile' | 'desktop'>('desktop')
+  const [mode, setMode] = useState<'preview' | 'edit'>('edit')
 
-  return <ScreenSizeContext.Provider value={{ screenSize, setScreenSize }}>{children}</ScreenSizeContext.Provider>
+  return (
+    <ScreenSizeContext.Provider value={{ screenSize, setScreenSize, mode, setMode }}>
+      {children}
+    </ScreenSizeContext.Provider>
+  )
 }
 
 /**

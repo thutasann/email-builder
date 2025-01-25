@@ -1,5 +1,6 @@
 'use client'
 
+import { useKeyboardEvent } from '@/core/libraries/hooks/use-keyboard-event'
 import { DragLayoutElement, DragLayoutProps, EmailTemplate } from '@/core/types/email-template.type'
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react'
 import { useEmailTemplate } from './email-template-context'
@@ -31,6 +32,7 @@ const SelectedElementContext = createContext<SelectedElementContextType>({
 export const SelectedElementProvider = ({ children }: { children: ReactNode }) => {
   const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null)
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
+  useKeyboardEvent('Escape', () => setSelectedElement(null))
 
   useEffect(() => {
     if (selectedElement?.layout) {

@@ -2,13 +2,16 @@
 
 import { Button } from '@/components/ui/button'
 import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
-import { Code, Monitor, Smartphone } from 'lucide-react'
+import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
+import { Code, Eye, EyeOff, Monitor, Smartphone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCallback } from 'react'
 
 function EditorHeader() {
-  const { screenSize, setScreenSize } = useScreenSize()
+  const { screenSize, setScreenSize, mode, setMode } = useScreenSize()
+  const { setSelectedElement } = useSelectedElement()
+  console.log('mode', mode)
 
   /** handle save template */
   const handleSaveTemplate = useCallback(() => {}, [])
@@ -23,6 +26,12 @@ function EditorHeader() {
     },
     [setScreenSize],
   )
+
+  /** handle toggle preview */
+  const handleTogglePreview = useCallback(() => {
+    setSelectedElement(null)
+    setMode(mode === 'preview' ? 'edit' : 'preview')
+  }, [mode, setMode, setSelectedElement])
 
   return (
     <header className='flex items-center justify-between px-4 py-3 shadow-sm sticky top-0 z-50 bg-white'>
@@ -47,8 +56,11 @@ function EditorHeader() {
         >
           <Smartphone />
         </Button>
-        <Button variant='ghost'>
+        <Button variant='ghost' size='icon'>
           <Code />
+        </Button>
+        <Button variant='ghost' size='icon' onClick={handleTogglePreview}>
+          {mode === 'preview' ? <EyeOff /> : <Eye />}
         </Button>
       </div>
 

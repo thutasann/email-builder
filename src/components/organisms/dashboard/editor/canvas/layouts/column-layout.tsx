@@ -2,6 +2,7 @@
 
 import { useDNDLayout } from '@/core/providers/contexts/dnd-layout-context'
 import { useEmailTemplate } from '@/core/providers/contexts/email-template-context'
+import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
 import { DragElementProps, DragLayoutProps } from '@/core/types/email-template.type'
 import { cn } from '@/lib/utils'
@@ -34,6 +35,7 @@ type ColumnLayoutProps = {
 function ColumnLayout({ layout }: ColumnLayoutProps) {
   const { dragElementLayout } = useDNDLayout()
   const { setEmailTemplate } = useEmailTemplate()
+  const { mode } = useScreenSize()
   const { selectedElement, setSelectedElement } = useSelectedElement()
   const [dragOver, setDragOver] = useState<DragOver | null>(null)
 
@@ -143,9 +145,14 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
         <div
           key={index}
           className={cn(
-            'p-2 bg-white relative flex cursor-pointer items-center justify-center border border-white hover:border',
+            'p-2 bg-white relative flex items-center justify-center border border-white',
+
+            mode === 'edit' ? 'hover:border-blue-500 cursor-pointer' : 'cursor-default',
+
             dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-300',
+
             !layout?.[index]?.type && 'bg-slate-100 border border-dashed border-slate-400 cursor-default',
+
             selectedElement?.layout?.id === layout.id &&
               selectedElement?.index === index &&
               layout?.[index]?.type &&
@@ -155,7 +162,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => {
-            if (layout?.[index]?.type) {
+            if (layout?.[index]?.type && mode === 'edit') {
               setSelectedElement({
                 layout,
                 index,
@@ -173,7 +180,9 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
           {layout?.[index] ? (
             getElementComponent(layout?.[index])
           ) : (
-            <span className='text-xs lg:text-sm font-semibold text-slate-600 py-2'>Drag Element Here</span>
+            <span className='text-xs lg:text-sm font-semibold text-slate-600 py-2 w-full justify-center items-center flex'>
+              Drag Element Here
+            </span>
           )}
         </div>
       ))}

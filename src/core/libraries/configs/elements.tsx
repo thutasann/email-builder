@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 
 /**
- * Elements
+ * Elements that are used in the editor
  */
 export const elements: Element[] = [
   {
@@ -106,6 +106,7 @@ export const elements: Element[] = [
     icon: PanelTop,
     type: 'LogoHeader',
     label: 'Logo Header',
+    textarea: 'Logo Header',
     imageUrl: '/logo.svg',
     alt: 'logo',
     url: '#',
