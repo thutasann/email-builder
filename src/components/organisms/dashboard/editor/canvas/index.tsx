@@ -5,6 +5,7 @@ import { useEmailTemplate } from '@/core/providers/contexts/email-template-conte
 import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
 import { DragLayoutElement, EmailTemplate } from '@/core/types/email-template.type'
+import { useKeyboardEvent } from '@/hooks/use-keyboard-event'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
 import ColumnLayout from './layouts/column-layout'
@@ -14,15 +15,17 @@ import SelectedLayoutRibbon from './layouts/selected-layout-ribbon'
  * ## Canvas Area for Email Template builder
  * - This component renders the canvas area for the email template builder
  * - It handles the drag and drop of layouts and elements
+ * - It handles the selection of layouts and elements
+ * - It handles the deletion of layouts and elements
  */
 function Canvas() {
   const { screenSize } = useScreenSize()
   const { dragElementLayout } = useDNDLayout()
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
-  const { selectedElement, setSelectedElement } = useSelectedElement()
+  const { selectedElement } = useSelectedElement()
   const [isDragOver, setIsDragOver] = useState(false)
   const [selectedLayout, setSelectedLayout] = useState<DragLayoutElement | null>(null)
-  console.log(selectedLayout)
+  useKeyboardEvent('Escape', () => setSelectedLayout(null))
 
   /** Handle Drag Over */
   const handleDragOver = useCallback(
