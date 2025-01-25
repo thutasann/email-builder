@@ -22,8 +22,23 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            .next/cache
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Project
-        run: npm run build
+      - name: Disable Next.js Telemetry
+        run: npx next telemetry disable
+
+      - name: Clean and Build
+        run: |
+          rm -rf .next
+          npm run build
