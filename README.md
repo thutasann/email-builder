@@ -1,6 +1,6 @@
-# Nextjs AI Email Builder
+# Email Builder
 
-This is a Next.js project that allows you to build AI-powered email templates.
+This is the Hobby Next.js project that allows you to build email templates.
 
 ## Tech Stack
 
@@ -13,4 +13,10 @@ This is a Next.js project that allows you to build AI-powered email templates.
 
 ```bash
 npx convex dev
+```
+
+## Run the project
+
+```bash
+npm run dev
 ```
