@@ -3,10 +3,10 @@ name: Next.js CI/CD
 on:
   push:
     branches:
-      - todo
+      - main
   pull_request:
     branches:
-      - todo
+      - main
 
 jobs:
   build-and-test:
