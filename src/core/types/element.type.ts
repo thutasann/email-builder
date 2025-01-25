@@ -1,7 +1,7 @@
 import { Icon } from './icon.type'
 import { LayoutElementType } from './layout-element-type.type'
 
-type CommonStyles = {
+export type CommonStyles = {
   backgroundColor?: string
   color?: string
   padding?: string
@@ -42,9 +42,7 @@ export type Element =
       type: LayoutElementType
       content: string
       url: string
-      style: CommonStyles & {
-        objectFit?: string
-      }
+      style: CommonStyles
       outerStyle: CommonStyles
     }
   | {
@@ -78,11 +76,6 @@ export type Element =
       label: string
       socialIcons: SocialIcon[]
       options: SocialIcon[]
-      style: {
-        width: number
-        height: number
-        color?: string
-        backgroundColor?: string
-      }
+      style: CommonStyles
       outerStyle: Pick<CommonStyles, 'display' | 'gap'>
     }

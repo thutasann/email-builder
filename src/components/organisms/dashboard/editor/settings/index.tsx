@@ -3,11 +3,12 @@
 import ColorPickerField from '@/components/atom/color-picker-field'
 import InputField from '@/components/atom/input-field'
 import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
+import { CommonStyles } from '@/core/types/element.type'
 import { DragElementProps } from '@/core/types/email-template.type'
 import { useCallback, useEffect, useState } from 'react'
 
 type FieldName = 'content'
-type StyleFieldName = 'backgroundColor' | 'color'
+type StyleFieldName = keyof CommonStyles
 
 function Settings() {
   const { selectedElement, setSelectedElement } = useSelectedElement()
@@ -46,7 +47,7 @@ function Settings() {
 
       const updatedLayout = { ...updatedData.layout }
       const updatedElement = { ...updatedLayout[selectedElement.index] }
-      const updatedStyle = { ...updatedElement.style }
+      const updatedStyle = { ...updatedElement.style } as CommonStyles
 
       updatedStyle[fieldName] = value
 
