@@ -3,10 +3,12 @@
 import { useDNDLayout } from '@/core/providers/contexts/dnd-layout-context'
 import { useEmailTemplate } from '@/core/providers/contexts/email-template-context'
 import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
+import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
 import { DragLayoutElement, EmailTemplate } from '@/core/types/email-template.type'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
 import ColumnLayout from './layouts/column-layout'
+import SelectedLayoutRibbon from './layouts/selected-layout-ribbon'
 
 /**
  * ## Canvas Area for Email Template builder
@@ -17,7 +19,10 @@ function Canvas() {
   const { screenSize } = useScreenSize()
   const { dragElementLayout } = useDNDLayout()
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
+  const { selectedElement, setSelectedElement } = useSelectedElement()
   const [isDragOver, setIsDragOver] = useState(false)
+  const [selectedLayout, setSelectedLayout] = useState<DragLayoutElement | null>(null)
+  console.log(selectedLayout)
 
   /** Handle Drag Over */
   const handleDragOver = useCallback(
@@ -47,6 +52,13 @@ function Canvas() {
     setIsDragOver(false)
   }, [setIsDragOver])
 
+  /** Handle Delete Layout */
+  const handleDeleteLayout = useCallback(() => {
+    setEmailTemplate((prev) => {
+      return prev.filter((layout) => layout.id !== selectedLayout?.id)
+    })
+  }, [selectedLayout, setEmailTemplate])
+
   /** Get Layout Component */
   const getLayoutComponent = useCallback((layout: DragLayoutElement) => {
     if (layout.type === 'column') {
@@ -68,8 +80,16 @@ function Canvas() {
       >
         {emailTemplate?.length > 0 ? (
           emailTemplate?.map((layout, index) => (
-            <div key={index} className='relative'>
-              {/* {selectedLayout?.id === layout.id && <SelectedLayoutRibbon onDelete={() => {}} />} */}
+            <div
+              key={index}
+              className='relative'
+              onClick={() => {
+                setSelectedLayout(layout)
+              }}
+            >
+              {selectedLayout?.id === layout.id && !selectedElement && (
+                <SelectedLayoutRibbon numOfColumns={layout.numOfCol} onDelete={handleDeleteLayout} />
+              )}
               {getLayoutComponent(layout)}
             </div>
           ))

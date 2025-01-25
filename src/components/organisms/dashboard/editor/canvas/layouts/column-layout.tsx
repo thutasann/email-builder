@@ -147,7 +147,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
           className={cn(
             'p-2 bg-white relative flex items-center justify-center border border-white',
 
-            mode === 'edit' ? 'hover:border-blue-500 cursor-pointer' : 'cursor-default',
+            mode === 'edit' && layout?.[index]?.type ? 'hover:border-blue-500 cursor-pointer' : 'cursor-default',
 
             dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-300',
 
@@ -167,6 +167,10 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
                 layout,
                 index,
               })
+            }
+
+            if (!layout?.[index]) {
+              setSelectedElement(null)
             }
           }}
         >
