@@ -4,12 +4,13 @@ import ColorPickerField from '@/components/atom/color-picker-field'
 import InputField from '@/components/atom/input-field'
 import InputStyleField from '@/components/atom/input-style-field'
 import SlideField from '@/components/atom/slider-field'
+import TextAreaField from '@/components/atom/text-area-field'
 import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
 import { CommonStyles } from '@/core/types/element.type'
 import { DragElementProps } from '@/core/types/email-template.type'
 import { useCallback, useEffect, useState } from 'react'
 
-type FieldName = 'content' | 'url'
+type FieldName = 'content' | 'url' | 'textarea'
 type StyleFieldName = keyof CommonStyles
 
 function Settings() {
@@ -80,6 +81,14 @@ function Settings() {
           />
         )}
 
+        {element?.textarea && (
+          <TextAreaField
+            label='TextArea'
+            value={element?.textarea}
+            onChange={(value) => handleInputChange('textarea', value)}
+          />
+        )}
+
         {element?.url && (
           <InputField
             label='URL'
@@ -125,6 +134,15 @@ function Settings() {
             label='Border Radius'
             value={element?.style?.borderRadius as number}
             onChange={(value) => handleStyleChange('borderRadius', value.toString())}
+          />
+        )}
+
+        {element?.style?.width && (
+          <SlideField
+            label='Width'
+            value={element?.style?.width as number}
+            unit='%'
+            onChange={(value) => handleStyleChange('width', value.toString())}
           />
         )}
       </section>

@@ -50,6 +50,10 @@ export type DragElementProps = Element & {
    * Element Content
    */
   content?: string
+  /**
+   * Element TextArea
+   */
+  textarea?: string
 }
 
 /**

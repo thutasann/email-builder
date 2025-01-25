@@ -6,7 +6,7 @@ type SlideFieldProps = {
   label: string
   value: number
   onChange: (value: string) => void
-  unit?: string
+  unit?: 'px' | '%'
 }
 
 function SlideField({ label, value, onChange, unit = 'px' }: SlideFieldProps) {
@@ -17,7 +17,8 @@ function SlideField({ label, value, onChange, unit = 'px' }: SlideFieldProps) {
   return (
     <div className='flex flex-col gap-1'>
       <label className='text-sm text-slate-600 font-semibold' htmlFor={label}>
-        {label} ({value})
+        {label} ({formattedValue(value)}
+        {unit})
       </label>
       <Slider
         defaultValue={[formattedValue(value)]}

@@ -10,8 +10,8 @@ type TextElementProps = {
  */
 function TextElement({ element }: TextElementProps) {
   return (
-    <div>
-      <h4 style={element.style as CSSProperties}>{element.label}</h4>
+    <div style={element.outerStyle as CSSProperties}>
+      <h4 style={element.style as CSSProperties}>{element.textarea}</h4>
     </div>
   )
 }

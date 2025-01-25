@@ -145,7 +145,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
           className={cn(
             'p-2 bg-white relative flex cursor-pointer items-center justify-center border border-white hover:border',
             dragOver?.index === index && dragOver?.columnId === layout.id && 'bg-slate-300',
-            !layout?.[index]?.type && 'bg-slate-100 border border-dashed border-slate-400',
+            !layout?.[index]?.type && 'bg-slate-100 border border-dashed border-slate-400 cursor-default',
             selectedElement?.layout?.id === layout.id &&
               selectedElement?.index === index &&
               layout?.[index]?.type &&

@@ -7,7 +7,7 @@ type InputStyleFieldProps = {
   label: string
   value: string
   onChange: (value: string) => void
-  unit?: string
+  unit?: 'px' | '%'
 }
 
 function InputStyleField({ label, value, onChange, unit = 'px' }: InputStyleFieldProps) {

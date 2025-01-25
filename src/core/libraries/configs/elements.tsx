@@ -113,8 +113,10 @@ export const elements: Element[] = [
       backgroundColor: '#ffffff',
       padding: '10px',
       height: '40%',
-      width: '40%',
+      width: '100%',
       borderRadius: '0px',
+      fontSize: '24px',
+      color: '#000000',
     },
     outerStyle: {
       display: 'flex',

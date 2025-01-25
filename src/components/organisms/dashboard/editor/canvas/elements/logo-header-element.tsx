@@ -1,5 +1,5 @@
 import { DragElementProps } from '@/core/types/email-template.type'
-import { memo } from 'react'
+import { CSSProperties, memo } from 'react'
 type LogoHeaderElementProps = {
   element: DragElementProps
 }
@@ -8,7 +8,11 @@ type LogoHeaderElementProps = {
  * Logo Header Element
  */
 function LogoHeaderElement({ element }: LogoHeaderElementProps) {
-  return <h1 className='text-2xl font-bold'>{element.label}</h1>
+  return (
+    <div style={element.outerStyle as CSSProperties}>
+      <h1 style={element.style as CSSProperties}>{element.label}</h1>
+    </div>
+  )
 }
 
 export default memo(LogoHeaderElement)
