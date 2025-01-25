@@ -22,12 +22,14 @@ type TextStyles = CommonStyles & {
   fontSize?: string
   fontWeight?: string
   textTransform?: string
+  backgroundColor?: string
 }
 
 type ImageStyles = CommonStyles & {
   height?: string
   margin?: string
   borderRadius?: string
+  backgroundColor?: string
 }
 
 type SocialIcon = {
@@ -70,7 +72,7 @@ export type Element =
       type: LayoutElementType
       label: string
       content: string
-      style: Pick<CommonStyles, 'color' | 'padding' | 'width'>
+      style: Pick<CommonStyles, 'color' | 'padding' | 'width' | 'backgroundColor'>
     }
   | {
       type: LayoutElementType
@@ -82,6 +84,7 @@ export type Element =
         width: number
         height: number
         color?: string
+        backgroundColor?: string
       }
       outerStyle: Pick<OuterStyles, 'display' | 'gap'>
     }

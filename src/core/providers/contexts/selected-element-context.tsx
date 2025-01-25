@@ -1,7 +1,8 @@
 'use client'
 
-import { DragLayoutProps } from '@/core/types/email-template.type'
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
+import { DragLayoutElement, DragLayoutProps, EmailTemplate } from '@/core/types/email-template.type'
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react'
+import { useEmailTemplate } from './email-template-context'
 
 type SelectedElement = {
   /**
@@ -29,6 +30,21 @@ const SelectedElementContext = createContext<SelectedElementContextType>({
  */
 export const SelectedElementProvider = ({ children }: { children: ReactNode }) => {
   const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null)
+  const { emailTemplate, setEmailTemplate } = useEmailTemplate()
+
+  useEffect(() => {
+    if (selectedElement?.layout) {
+      let updatedEmailTemplate: EmailTemplate = []
+      emailTemplate.forEach((item, index) => {
+        if (item.id === selectedElement?.layout?.id) {
+          updatedEmailTemplate.push(selectedElement.layout as DragLayoutElement)
+        } else {
+          updatedEmailTemplate.push(item)
+        }
+      })
+      setEmailTemplate(updatedEmailTemplate)
+    }
+  }, [selectedElement])
 
   return (
     <SelectedElementContext.Provider value={{ selectedElement, setSelectedElement }}>

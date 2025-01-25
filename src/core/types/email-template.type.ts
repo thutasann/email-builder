@@ -13,7 +13,7 @@ export type DragLayoutProps = Layout & {
   /**
    * Layout Content
    */
-  content: string
+  content?: string
   /**
    * Column Elements
    */
@@ -44,6 +44,10 @@ export type DragElementProps = Element & {
    * Element Image Alt
    */
   alt?: string
+  /**
+   * Element Content
+   */
+  content?: string
 }
 
 /**

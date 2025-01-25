@@ -115,6 +115,17 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
         return col
       })
     })
+
+    setSelectedElement((prev) => {
+      if (!prev?.layout) return null
+      delete prev?.layout?.[index]
+      return {
+        ...prev,
+        layout: {
+          ...prev?.layout,
+        },
+      }
+    })
   }, [])
 
   return (

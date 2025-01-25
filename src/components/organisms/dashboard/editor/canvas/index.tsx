@@ -66,9 +66,13 @@ function Canvas() {
         onDrop={handleDrop}
         onDragLeave={handleDragLeave}
       >
-        {/* Email Template Rendering */}
         {emailTemplate?.length > 0 ? (
-          emailTemplate?.map((layout, index) => <div key={index}>{getLayoutComponent(layout)}</div>)
+          emailTemplate?.map((layout, index) => (
+            <div key={index} className='relative'>
+              {/* {selectedLayout?.id === layout.id && <SelectedLayoutRibbon onDelete={() => {}} />} */}
+              {getLayoutComponent(layout)}
+            </div>
+          ))
         ) : (
           <div className='flex items-center justify-center p-4 bg-gray-100 rounded-sm'>
             <h2 className='text-md font-semibold text-slate-600'>Add Layout Here</h2>
