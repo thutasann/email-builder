@@ -1,0 +1,269 @@
+[
+  {
+    "0": {
+      "icon": { "displayName": "Frame" },
+      "type": "Logo",
+      "label": "Logo",
+      "imageUrl": "https://explorersweb.com/wp-content/uploads/2024/10/shutterstock_2507398175.jpg",
+      "alt": "logo",
+      "url": "#",
+      "style": {
+        "backgroundColor": "#ffffff",
+        "padding": "0px",
+        "height": "30%",
+        "width": "29%",
+        "margin": "12px",
+        "borderRadius": "100px"
+      },
+      "outerStyle": {
+        "display": "flex",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#016491",
+        "width": "100%"
+      },
+      "id": 1737830040782
+    },
+    "label": "Column",
+    "type": "column",
+    "numOfCol": 1,
+    "icon": { "displayName": "RectangleHorizontal" },
+    "id": 1737830034648
+  },
+  {
+    "0": {
+      "icon": { "displayName": "TextSelect" },
+      "type": "Text",
+      "label": "Text",
+      "textarea": "Mountains are towering natural formations that rise prominently above their surroundings, often characterized by steep slopes, rugged terrain, and significant elevation. 🏔️",
+      "style": {
+        "backgroundColor": "",
+        "color": "#000000",
+        "padding": "10px",
+        "textAlign": "left",
+        "fontSize": "16px",
+        "fontWeight": "bold",
+        "textTransform": "lowercase"
+      },
+      "outerStyle": { "backgroundColor": "#fff", "width": "100%" },
+      "id": 1737830120536
+    },
+    "label": "Column",
+    "type": "column",
+    "numOfCol": 1,
+    "icon": { "displayName": "RectangleHorizontal" },
+    "id": 1737830117015
+  },
+  {
+    "0": {
+      "icon": { "displayName": "Image" },
+      "type": "Image",
+      "label": "Image",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5uoY-6bJyGxzbtGDAGyUUu2Q_7nse9y-0Kg&s",
+      "alt": "Image",
+      "url": "#",
+      "style": {
+        "backgroundColor": "#ffffff",
+        "padding": "0px",
+        "height": "50%",
+        "width": "100%",
+        "margin": "0px",
+        "borderRadius": "0px"
+      },
+      "outerStyle": {
+        "display": "flex",
+        "width": "100%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#ffffff"
+      },
+      "id": 1737830153101
+    },
+    "1": {
+      "icon": { "displayName": "Image" },
+      "type": "Image",
+      "label": "Image",
+      "imageUrl": "https://cdn.pixabay.com/photo/2021/03/11/02/57/mountain-6086083_640.jpg",
+      "alt": "Image",
+      "url": "#",
+      "style": {
+        "backgroundColor": "#ffffff",
+        "padding": "0px",
+        "height": "50%",
+        "width": "100%",
+        "margin": "0px",
+        "borderRadius": "0px"
+      },
+      "outerStyle": {
+        "display": "flex",
+        "width": "100%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#ffffff"
+      },
+      "id": 1737830155048
+    },
+    "2": {
+      "icon": { "displayName": "Image" },
+      "type": "Image",
+      "label": "Image",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1688645554172-d3aef5f837ce?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW5kaWFuJTIwbW91bnRhaW5zfGVufDB8fDB8fHww",
+      "alt": "Image",
+      "url": "#",
+      "style": {
+        "backgroundColor": "#ffffff",
+        "padding": "0px",
+        "height": "50%",
+        "width": "100%",
+        "margin": "0px",
+        "borderRadius": "0px"
+      },
+      "outerStyle": {
+        "display": "flex",
+        "width": "100%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#ffffff"
+      },
+      "id": 1737830158165
+    },
+    "label": "3 Column",
+    "type": "column",
+    "numOfCol": 3,
+    "icon": { "displayName": "Columns3" },
+    "id": 1737830150448
+  },
+  {
+    "0": {
+      "icon": { "displayName": "SquareSplitVertical" },
+      "type": "Divider",
+      "label": "Divider",
+      "content": "",
+      "style": { "color": "#efefef", "padding": "0px", "width": "100%" },
+      "id": 1737830241415
+    },
+    "label": "Column",
+    "type": "column",
+    "numOfCol": 1,
+    "icon": { "displayName": "RectangleHorizontal" },
+    "id": 1737830238498
+  },
+  {
+    "0": {
+      "icon": { "displayName": "Image" },
+      "type": "Image",
+      "label": "Image",
+      "imageUrl": "https://eliasaikaly.com/wp-content/uploads/2017/11/Elia-on-the-summit-of-Everest-1-768x512.jpg",
+      "alt": "Image",
+      "url": "#",
+      "style": {
+        "backgroundColor": "#ffffff",
+        "padding": "0px",
+        "height": "50%",
+        "width": "100%",
+        "margin": "0px",
+        "borderRadius": "0px"
+      },
+      "outerStyle": {
+        "display": "flex",
+        "width": "100%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#ffffff"
+      },
+      "id": 1737830283015
+    },
+    "1": {
+      "icon": { "displayName": "TextSelect" },
+      "type": "Text",
+      "label": "Text",
+      "textarea": "My goal was to create a video that would transport viewers to the summit of Mt. Everest. No music. No sound effects. No slow motion. No extreme wide angle helmet-cam footage. Just the raw sound of the environment, the flow of oxygen being inhaled through climbers’ masks and the deep struggle and gasps for air as each person endures, suffers and ultimately prevails.",
+      "style": {
+        "backgroundColor": "",
+        "color": "#000000",
+        "padding": "10px",
+        "textAlign": "left",
+        "fontSize": "15px",
+        "fontWeight": "normal",
+        "textTransform": "lowercase"
+      },
+      "outerStyle": { "backgroundColor": "#fff", "width": "100%" },
+      "id": 1737830296883
+    },
+    "label": "2 Column",
+    "type": "column",
+    "numOfCol": 2,
+    "icon": { "displayName": "Columns2" },
+    "id": 1737830253886
+  },
+  {
+    "0": {
+      "icon": { "displayName": "SquareSplitVertical" },
+      "type": "Divider",
+      "label": "Divider",
+      "content": "",
+      "style": { "color": "#efefef", "padding": "0px", "width": "100%" },
+      "id": 1737830339998
+    },
+    "label": "Column",
+    "type": "column",
+    "numOfCol": 1,
+    "icon": { "displayName": "RectangleHorizontal" },
+    "id": 1737830336782
+  },
+  {
+    "0": {
+      "icon": { "displayName": "TextSelect" },
+      "type": "Text",
+      "label": "Text",
+      "textarea": "Some are guided, some choose to climb without oxygen, others choose more complex direct routes up the mountain. Personally, I fill up on the additional challenge of running around the mountain with cameras, chasing climbers, dealing with batteries and capturing the struggle authentically while ensuring I do not interrupt the process or put myself or anyone else at risk. As a filmmaker I chase stories not summits and in this case we were telling the story of a team of Arabs, friends of mine, including the the first Saudi Arabian woman Raha Moharrak, Palestinian businessman Raed Zidan and Qatari explorer, Mohammed Althani. Being of Lebanese origins, I believed strongly in each of their potential to inspire a new generation of adventurers and committed to supporting their dream and giving it my all to document their journey.",
+      "style": {
+        "backgroundColor": "",
+        "color": "#000000",
+        "padding": "10px",
+        "textAlign": "left",
+        "fontSize": "14px",
+        "fontWeight": "normal",
+        "textTransform": "capitalize"
+      },
+      "outerStyle": { "backgroundColor": "#fff", "width": "100%" },
+      "id": 1737830350286
+    },
+    "label": "Column",
+    "type": "column",
+    "numOfCol": 1,
+    "icon": { "displayName": "RectangleHorizontal" },
+    "id": 1737830346336
+  },
+  {
+    "0": {
+      "icon": {},
+      "type": "Image",
+      "label": "Image",
+      "imageUrl": "https://57hours.com/wp-content/uploads/2021/05/everest-summit-pose-e1672278501365.jpg",
+      "alt": "Image",
+      "url": "#",
+      "style": {
+        "backgroundColor": "#ffffff",
+        "padding": "0px",
+        "height": "50%",
+        "width": "100%",
+        "margin": "0px",
+        "borderRadius": "0px"
+      },
+      "outerStyle": {
+        "display": "flex",
+        "width": "100%",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#ffffff"
+      },
+      "id": 1737830524766
+    },
+    "label": "Column",
+    "type": "column",
+    "numOfCol": 1,
+    "icon": { "displayName": "RectangleHorizontal" },
+    "id": 1737830447768
+  }
+]
