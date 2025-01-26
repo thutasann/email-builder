@@ -10,7 +10,7 @@ import { useCallback } from 'react'
 
 function EditorHeader() {
   const { screenSize, setScreenSize, mode, setMode } = useScreenSize()
-  const { setSelectedElement } = useSelectedElement()
+  const { setSelectedElement, setSelectedLayout } = useSelectedElement()
 
   /** handle save template */
   const handleSaveTemplate = useCallback(() => {}, [])
@@ -29,8 +29,9 @@ function EditorHeader() {
   /** handle toggle preview */
   const handleTogglePreview = useCallback(() => {
     setSelectedElement(null)
+    setSelectedLayout(null)
     setMode(mode === 'preview' ? 'edit' : 'preview')
-  }, [mode, setMode, setSelectedElement])
+  }, [mode, setMode, setSelectedElement, setSelectedLayout])
 
   return (
     <header className='flex items-center justify-between px-4 py-3 shadow-sm sticky top-0 z-50 bg-white'>

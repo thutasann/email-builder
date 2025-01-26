@@ -19,11 +19,15 @@ type SelectedElement = {
 type SelectedElementContextType = {
   selectedElement: SelectedElement | null
   setSelectedElement: Dispatch<SetStateAction<SelectedElement | null>>
+  selectedLayout: DragLayoutElement | null
+  setSelectedLayout: Dispatch<SetStateAction<DragLayoutElement | null>>
 }
 
 const SelectedElementContext = createContext<SelectedElementContextType>({
   selectedElement: null,
   setSelectedElement: () => {},
+  selectedLayout: null,
+  setSelectedLayout: () => {},
 })
 
 /**
@@ -32,7 +36,12 @@ const SelectedElementContext = createContext<SelectedElementContextType>({
 export const SelectedElementProvider = ({ children }: { children: ReactNode }) => {
   const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null)
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
-  useKeyboardEvent('Escape', () => setSelectedElement(null))
+  const [selectedLayout, setSelectedLayout] = useState<DragLayoutElement | null>(null)
+
+  useKeyboardEvent('Escape', () => {
+    setSelectedElement(null)
+    setSelectedLayout(null)
+  })
 
   useEffect(() => {
     if (selectedElement?.layout) {
@@ -49,7 +58,7 @@ export const SelectedElementProvider = ({ children }: { children: ReactNode }) =
   }, [selectedElement])
 
   return (
-    <SelectedElementContext.Provider value={{ selectedElement, setSelectedElement }}>
+    <SelectedElementContext.Provider value={{ selectedElement, setSelectedElement, selectedLayout, setSelectedLayout }}>
       {children}
     </SelectedElementContext.Provider>
   )

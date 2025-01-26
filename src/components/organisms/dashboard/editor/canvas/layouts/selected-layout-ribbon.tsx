@@ -5,6 +5,9 @@ type SelectedLayoutRibbonProps = {
   onDelete: () => void
 }
 
+/**
+ * ## Ribbon for Selected Layout
+ */
 function SelectedLayoutRibbon({ numOfColumns, onDelete }: SelectedLayoutRibbonProps) {
   return (
     <>

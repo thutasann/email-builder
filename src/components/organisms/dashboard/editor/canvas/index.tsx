@@ -5,7 +5,6 @@ import { useEmailTemplate } from '@/core/providers/contexts/email-template-conte
 import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { useSelectedElement } from '@/core/providers/contexts/selected-element-context'
 import { DragLayoutElement, EmailTemplate } from '@/core/types/email-template.type'
-import { useKeyboardEvent } from '@/hooks/use-keyboard-event'
 import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
 import ColumnLayout from './layouts/column-layout'
@@ -22,10 +21,8 @@ function Canvas() {
   const { screenSize } = useScreenSize()
   const { dragElementLayout } = useDNDLayout()
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
-  const { selectedElement } = useSelectedElement()
+  const { selectedElement, selectedLayout, setSelectedLayout } = useSelectedElement()
   const [isDragOver, setIsDragOver] = useState(false)
-  const [selectedLayout, setSelectedLayout] = useState<DragLayoutElement | null>(null)
-  useKeyboardEvent('Escape', () => setSelectedLayout(null))
 
   /** Handle Drag Over */
   const handleDragOver = useCallback(

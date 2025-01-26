@@ -34,7 +34,7 @@ type ColumnLayoutProps = {
  */
 function ColumnLayout({ layout }: ColumnLayoutProps) {
   const { dragElementLayout } = useDNDLayout()
-  const { setEmailTemplate } = useEmailTemplate()
+  const { emailTemplate, setEmailTemplate } = useEmailTemplate()
   const { mode } = useScreenSize()
   const { selectedElement, setSelectedElement } = useSelectedElement()
   const [dragOver, setDragOver] = useState<DragOver | null>(null)
@@ -133,6 +133,53 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
     [layout.id, setSelectedElement],
   )
 
+  /** Handle Move Up for Elements */
+  const handleMoveUp = useCallback((layoutId: number) => {
+    setEmailTemplate((prev) => {
+      const index = prev.findIndex((col) => col.id === layoutId)
+      if (index > 0) {
+        const updatedItems = [...prev]
+        ;[updatedItems[index - 1], updatedItems[index]] = [updatedItems[index], updatedItems[index - 1]]
+        return updatedItems
+      }
+      return prev
+    })
+  }, [])
+
+  /** Handle Move Down for Elements */
+  const handleMoveDown = useCallback(
+    (layoutId: number) => {
+      setEmailTemplate((prev) => {
+        const index = prev.findIndex((col) => col.id === layoutId)
+        if (index < prev.length - 1) {
+          const updatedItems = [...prev]
+          ;[updatedItems[index + 1], updatedItems[index]] = [updatedItems[index], updatedItems[index + 1]]
+          return updatedItems
+        }
+        return prev
+      })
+    },
+    [emailTemplate, setEmailTemplate],
+  )
+
+  /** Handle Duplicate Element */
+  const handleDuplicateElement = useCallback(
+    (layoutId: number) => {
+      const foundElement = emailTemplate.find((col) => col.id === layoutId)
+      if (!foundElement) return
+      setEmailTemplate((prev) => {
+        return [
+          ...prev,
+          {
+            ...foundElement,
+            id: new Date().getTime(),
+          },
+        ]
+      })
+    },
+    [emailTemplate, layout.id],
+  )
+
   return (
     <div
       style={{
@@ -178,6 +225,9 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
             <SelectedElementRibbon
               element={selectedElement?.layout?.[index]}
               onDelete={() => handleDeleteElement(index)}
+              onMoveUp={() => handleMoveUp(layout.id)}
+              onMoveDown={() => handleMoveDown(layout.id)}
+              onDuplicate={() => handleDuplicateElement(layout.id)}
             />
           )}
 
