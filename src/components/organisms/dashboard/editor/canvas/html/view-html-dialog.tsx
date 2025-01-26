@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { useToast } from '@/hooks/use-toast'
 import { sendEmail } from '@/lib/send-email'
 import { getModifiedHTMLCode } from '@/lib/utils'
@@ -18,6 +19,7 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
   const [copied, setCopied] = useState(false)
   const modifiedHTMLCode = useMemo(() => getModifiedHTMLCode(htmlCode), [htmlCode])
   const { toast } = useToast()
+  const { setMode } = useScreenSize()
 
   const copyToClipboard = useCallback(() => {
     navigator.clipboard.writeText(modifiedHTMLCode)
@@ -40,6 +42,7 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
           title: 'Email Sucess',
           variant: 'default',
         })
+        setMode('edit')
       }
     } catch (error) {
       console.error('Failed to send email:', error)
@@ -48,6 +51,7 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
         description: 'Failed to send the email.',
         variant: 'destructive',
       })
+      setMode('edit')
     }
   }
 

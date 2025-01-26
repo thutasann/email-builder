@@ -24,7 +24,7 @@ type CanvasProps = {
  */
 function Canvas({ viewHTMLCode, setViewHTMLCode }: CanvasProps) {
   const htmlRef = useRef<HTMLDivElement>(null)
-  const { screenSize } = useScreenSize()
+  const { screenSize, mode } = useScreenSize()
   const { dragElementLayout } = useDNDLayout()
   const { emailTemplate, setEmailTemplate } = useEmailTemplate()
   const { selectedElement, selectedLayout, setSelectedLayout } = useSelectedElement()
@@ -110,7 +110,7 @@ function Canvas({ viewHTMLCode, setViewHTMLCode }: CanvasProps) {
                 setSelectedLayout(layout)
               }}
             >
-              {selectedLayout?.id === layout.id && !selectedElement && (
+              {selectedLayout?.id === layout.id && !selectedElement && mode === 'edit' && (
                 <SelectedLayoutRibbon numOfColumns={layout.numOfCol} onDelete={handleDeleteLayout} />
               )}
               {getLayoutComponent(layout)}

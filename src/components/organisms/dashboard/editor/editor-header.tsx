@@ -30,6 +30,7 @@ function EditorHeader({ setViewHTMLCode }: EditorHeaderProps) {
   /** handle view html code */
   const handleViewHTMLCode = useCallback(
     (flag: boolean) => {
+      setMode('preview')
       setViewHTMLCode(flag)
     },
     [setViewHTMLCode],

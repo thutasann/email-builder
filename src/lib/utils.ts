@@ -157,6 +157,24 @@ export function getModifiedHTMLCode(
         border-bottom: 1px solid #e5e5e5;
         margin: 20px 0;
       }
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
       /* Custom styles */
       ${inlineStyles}
     </style>
