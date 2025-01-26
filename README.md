@@ -1,6 +1,7 @@
 # Email Builder
 
 This is the Hobby Next.js project that allows you to build email templates.
+This project is only focused on the Email Builder and Sending Email.
 
 ## Tech Stack
 

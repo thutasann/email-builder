@@ -2,8 +2,9 @@
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { sendEmail } from '@/lib/send-email'
 import { getModifiedHTMLCode } from '@/lib/utils'
-import { Check, Copy } from 'lucide-react'
+import { Check, Copy, Send } from 'lucide-react'
 import { useCallback, useMemo, useState } from 'react'
 
 type ViewHTMLDialogProps = {
@@ -24,6 +25,18 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
     }, 1000)
   }, [modifiedHTMLCode])
 
+  const handleSendEmail = async () => {
+    try {
+      await sendEmail({
+        to: 'thutasann2002@gmail.com',
+        subject: 'Your Email Subject',
+        htmlContent: modifiedHTMLCode,
+      })
+    } catch (error) {
+      console.error('Failed to send email:', error)
+    }
+  }
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className='max-w-4xl max-h-[80vh]'>
@@ -32,6 +45,9 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
             HTML Email Template
             <Button variant='ghost' size='icon' onClick={copyToClipboard}>
               {copied ? <Check /> : <Copy />}
+            </Button>
+            <Button variant='ghost' size='icon' onClick={handleSendEmail}>
+              <Send />
             </Button>
           </DialogTitle>
         </DialogHeader>
