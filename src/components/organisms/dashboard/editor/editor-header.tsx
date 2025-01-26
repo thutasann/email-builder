@@ -8,7 +8,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useCallback } from 'react'
 
-function EditorHeader() {
+type EditorHeaderProps = {
+  setViewHTMLCode: (flag: boolean) => void
+}
+
+function EditorHeader({ setViewHTMLCode }: EditorHeaderProps) {
   const { screenSize, setScreenSize, mode, setMode } = useScreenSize()
   const { setSelectedElement, setSelectedLayout } = useSelectedElement()
 
@@ -24,6 +28,14 @@ function EditorHeader() {
       setScreenSize(size)
     },
     [setScreenSize],
+  )
+
+  /** handle view html code */
+  const handleViewHTMLCode = useCallback(
+    (flag: boolean) => {
+      setViewHTMLCode(flag)
+    },
+    [setViewHTMLCode],
   )
 
   /** handle toggle preview */
@@ -56,7 +68,7 @@ function EditorHeader() {
         >
           <Smartphone />
         </Button>
-        <Button variant='ghost' size='icon'>
+        <Button variant='ghost' size='icon' onClick={() => handleViewHTMLCode(true)}>
           <Code />
         </Button>
         <Button variant='ghost' size='icon' onClick={handleTogglePreview}>

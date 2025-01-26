@@ -185,7 +185,7 @@ function ColumnLayout({ layout }: ColumnLayoutProps) {
       style={{
         display: 'grid',
         gridTemplateColumns: `repeat(${layout?.numOfCol}, 1fr)`,
-        gap: '0px',
+        gap: layout?.numOfCol > 1 ? '3px' : '0px',
       }}
     >
       {Array.from({ length: layout?.numOfCol }).map((_, index) => (
