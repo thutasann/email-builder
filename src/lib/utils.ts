@@ -36,6 +36,16 @@ export function getModifiedHTMLCode(
       /<div class="relative">\s*<div style="display:\s*grid;\s*grid-template-columns:\s*repeat\(1,\s*1fr\)[^"]*">/g,
       '<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;"><tr>',
     )
+    // Handle single column with background color
+    .replace(
+      /<div\s*class="p-2[^"]*"[^>]*>\s*<div\s*style="display:\s*flex[^"]*background-color:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)[^"]*">/g,
+      (_, r, g, b) => `<td align="center" style="padding: 8px; background-color: rgb(${r}, ${g}, ${b}); width: 100%;">`,
+    )
+    // Handle single column content
+    .replace(
+      /<div\s*class="p-2[^"]*"[^>]*>\s*<div style="background-color:\s*rgb\(255,\s*255,\s*255\);\s*width:\s*100%">/g,
+      '<td style="padding: 8px; width: 100%;">',
+    )
     // Convert three column grid to table
     .replace(
       /<div class="relative">\s*<div style="display:\s*grid;\s*grid-template-columns:\s*repeat\(3,\s*1fr\)[^"]*">/g,
@@ -44,8 +54,17 @@ export function getModifiedHTMLCode(
     // Convert two column grid to table
     .replace(
       /<div class="relative">\s*<div style="display:\s*grid;\s*grid-template-columns:\s*repeat\(2,\s*1fr\)[^"]*">/g,
-      '<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;"><tr>',
+      '<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px; table-layout: fixed;"><tr>',
     )
+    // Handle two column grid cells
+    .replace(
+      /<div\s*class="p-2[^"]*"[^>]*>\s*<div\s*style="(?:display:\s*flex[^"]*|background-color:[^"]*)">/g,
+      '<td width="50%" style="padding: 8px; vertical-align: top;">',
+    )
+    // Clean up closing tags for 2-column grid
+    .replace(/(<\/div>\s*){2}(?=<div\s*class="p-2[^"]*"[^>]*>)/g, '</td>')
+    .replace(/(<\/div>\s*){3}(?=<div class="relative">)/g, '</td></tr></table>')
+
     // Convert flex container with background color
     .replace(
       /<div\s*class="p-2[^"]*"[^>]*>\s*<div\s*style="display:\s*flex[^"]*background-color:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)[^"]*">/g,

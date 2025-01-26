@@ -31,7 +31,7 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
     try {
       const res = await sendEmail({
         to: 'thutasann2002@gmail.com',
-        subject: 'Your Email Subject',
+        subject: 'Fix Two Columns',
         htmlContent: modifiedHTMLCode,
       })
       if (res?.success) {
