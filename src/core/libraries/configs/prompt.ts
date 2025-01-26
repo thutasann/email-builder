@@ -1,5 +1,9 @@
 import dedent from 'dedent'
 
+/**
+ * AI Prompt to Generate Email Template
+ * @todo: to implement it in future
+ */
 export const prompt = {
   EMAIL_PROMPT: dedent`
     Your are Pro Email template builder AI Assitance

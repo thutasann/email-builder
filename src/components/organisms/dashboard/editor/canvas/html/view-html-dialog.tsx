@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useScreenSize } from '@/core/providers/contexts/screen-size-context'
 import { useToast } from '@/hooks/use-toast'
+import { getModifiedHTMLCode } from '@/lib/modify-html'
 import { sendEmail } from '@/lib/send-email'
-import { getModifiedHTMLCode } from '@/lib/utils'
 import { Check, Copy, Send } from 'lucide-react'
 import { useCallback, useMemo, useState } from 'react'
 
@@ -33,7 +33,7 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
     try {
       const res = await sendEmail({
         to: 'thutasann2002@gmail.com',
-        subject: 'Fix Two Columns',
+        subject: 'Mountains',
         htmlContent: modifiedHTMLCode,
       })
       if (res?.success) {
