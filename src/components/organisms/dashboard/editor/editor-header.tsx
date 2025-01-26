@@ -19,9 +19,6 @@ function EditorHeader({ setViewHTMLCode }: EditorHeaderProps) {
   /** handle save template */
   const handleSaveTemplate = useCallback(() => {}, [])
 
-  /** handle send test email */
-  const handleSendTestEmail = useCallback(() => {}, [])
-
   /** handle toggle screen size */
   const handleToggleScreenSize = useCallback(
     (size: 'mobile' | 'desktop') => {
@@ -68,17 +65,15 @@ function EditorHeader({ setViewHTMLCode }: EditorHeaderProps) {
         >
           <Smartphone />
         </Button>
-        <Button variant='ghost' size='icon' onClick={() => handleViewHTMLCode(true)}>
-          <Code />
-        </Button>
+
         <Button variant='ghost' size='icon' onClick={handleTogglePreview}>
           {mode === 'preview' ? <EyeOff /> : <Eye />}
         </Button>
       </div>
 
       <div className='flex items-center gap-2'>
-        <Button variant='outline' onClick={handleSendTestEmail}>
-          Send Test Email
+        <Button variant='ghost' size='icon' onClick={() => handleViewHTMLCode(true)}>
+          <Code />
         </Button>
         <Button onClick={handleSaveTemplate}>Save Template</Button>
       </div>

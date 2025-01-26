@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { useToast } from '@/hooks/use-toast'
 import { sendEmail } from '@/lib/send-email'
 import { getModifiedHTMLCode } from '@/lib/utils'
 import { Check, Copy, Send } from 'lucide-react'
@@ -16,6 +17,7 @@ type ViewHTMLDialogProps = {
 function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
   const [copied, setCopied] = useState(false)
   const modifiedHTMLCode = useMemo(() => getModifiedHTMLCode(htmlCode), [htmlCode])
+  const { toast } = useToast()
 
   const copyToClipboard = useCallback(() => {
     navigator.clipboard.writeText(modifiedHTMLCode)
@@ -27,13 +29,25 @@ function ViewHTMLDialog({ htmlCode, open, onClose }: ViewHTMLDialogProps) {
 
   const handleSendEmail = async () => {
     try {
-      await sendEmail({
+      const res = await sendEmail({
         to: 'thutasann2002@gmail.com',
         subject: 'Your Email Subject',
         htmlContent: modifiedHTMLCode,
       })
+      if (res?.success) {
+        onClose()
+        toast({
+          title: 'Email Sucess',
+          variant: 'default',
+        })
+      }
     } catch (error) {
       console.error('Failed to send email:', error)
+      toast({
+        title: 'Email Failed',
+        description: 'Failed to send the email.',
+        variant: 'destructive',
+      })
     }
   }
 

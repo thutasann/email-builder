@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/toaster'
 import Providers from '@/core/providers'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import type { Metadata } from 'next'
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}>
         <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>
           <Providers>{children}</Providers>
+          <Toaster />
         </GoogleOAuthProvider>
       </body>
     </html>
